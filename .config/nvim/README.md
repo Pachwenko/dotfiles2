@@ -25,3 +25,8 @@ brew install ripgrep
 brew install fzf
 
 ```
+
+
+### Useful key mappings
+
+##### Telescope:
