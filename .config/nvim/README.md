@@ -8,15 +8,15 @@ lua
   - keymaps
   - colorscheme
 - plugins
-  - See lazy plugin docs here https://lazy.folke.io/ 
+  - See lazy plugin docs here https://lazy.folke.io/
   - only put lazy lua plugins in here!
 
 ### Setting up the dotfiles:
 
 Creating symbolic links:
 ```
-ln -s ~/newnewdotfiles/nvim/.config/nvim/init.lua ~/.config/nvim/init.lua
-ln -s ~/newnewdotfiles/nvim/.config/nvim/lua ~/.config/nvim/lua
+ln -s ~/newnewdotfiles/.config/nvim/init.lua ~/.config/nvim/init.lua
+ln -s ~/newnewdotfiles/.config/nvim/lua ~/.config/nvim/lua
 ```
 
 Installing mac packages:
