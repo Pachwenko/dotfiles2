@@ -1,9 +1,22 @@
 local ts_utils = require('nvim-treesitter.ts_utils')
 
 function run_command_in_terminal(command)
-  local output = vim.fn.system(command)
-  print(output)
+  local current_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")
+  local right_pane = vim.fn.system(string.format("tmux list-panes -t %s -F '#{pane_id}' | tail -n +2 | head -n 1", current_pane)):gsub("\n", "")
+
+  if right_pane == "" then
+    print("No pane found!")
+    return
+  end
+
+  local tmux_command = string.format("tmux send-keys -t %s '%s' Enter", right_pane, command)
+  os.execute(tmux_command)
 end
+
+-- function run_command_in_terminal(command)
+--   local output = vim.fn.system(command)
+--   print(output)
+-- end
 
 function print_class_and_function_info()
   local node = ts_utils.get_node_at_cursor()
@@ -48,19 +61,10 @@ function print_class_and_function_info()
   end
 
   -- Get the file path
-  -- Get the current file path
   local full_path = vim.fn.expand("%:p")
-
-  -- Get the current working directory
   local cwd = vim.fn.getcwd()
-
-  -- Get the file path relative to the current working directory
   local relative_path = full_path:sub(#cwd + 2)
 
-  -- Print the information
-  -- print("Class: " .. class_name)
-  -- print("Function: " .. function_name)
-  -- print("File Path: " .. relative_path)
   local command_to_run = ""
   if string.match(relative_path, 'lambda') then
     command_to_run = "docker compose run test -k " .. function_name
@@ -69,7 +73,7 @@ function print_class_and_function_info()
     python_path = string.match(python_path, "^(.*)%..*$")
     command_to_run = "docker compose run test " ..  python_path .. ":" .. class_name .. "." .. function_name
   end
-  print("Command to run: " .. command_to_run)
+  -- print("Command to run: " .. command_to_run)
   run_command_in_terminal(command_to_run)
 end
 
