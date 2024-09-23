@@ -36,4 +36,6 @@ vim.cmd("syntax on")
 
 require('config.lazy')
 require('config.colorscheme')
+require('config.autocomplete')
+require('config.django-test-runner')
 require('config.keymaps')
