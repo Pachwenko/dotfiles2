@@ -1,12 +1,13 @@
 local ts_utils = require('nvim-treesitter.ts_utils')
 
 function run_command_in_terminal(command)
-  local current_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")
+    local current_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")
   local right_pane = vim.fn.system(string.format("tmux list-panes -t %s -F '#{pane_id}' | tail -n +2 | head -n 1", current_pane)):gsub("\n", "")
 
   if right_pane == "" then
-    print("No pane found!")
-    return
+    -- No right pane; create a new one with vertical split
+    vim.fn.system("tmux split-window -v")
+    right_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")
   end
 
   local tmux_command = string.format("tmux send-keys -t %s '%s' Enter", right_pane, command)
