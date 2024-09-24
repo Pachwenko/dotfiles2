@@ -84,6 +84,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 		vim.keymap.set("n", "<leader>ss", ":SessionSearch<CR>", { desc = "[S]earch [S]essions" })
 		vim.keymap.set("n", "<leader>so", ":ObsidianSearch<CR>", { desc = "[S]earch [O]bsidian" })
+		vim.keymap.set("n", "<leader>st", ":Telescope treesitter<CR>", { desc = "[S]earch [T]reesitter Symbols" })
+		vim.keymap.set(
+			"n",
+			"<leader>sw",
+			":Telescope lsp_workspace_symbols<CR>",
+			{ desc = "[L]SP [W]orkspace Symbols" }
+		)
+		vim.keymap.set("n", "<leader>fc", ":Telescope commands<CR>", { desc = "[F]ind [C]ommands" })
+		vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<CR>", { desc = "[F]ind [K]eymaps" })
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", function()

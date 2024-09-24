@@ -139,7 +139,4 @@ vim.cmd("syntax on")
 
 -- Grab other lua files!
 require("config.lazy")
-require("config.colorscheme")
-require("config.autocomplete")
-require("config.django-test-runner")
-require("config.keymaps")
+require("custom_plugins.init")

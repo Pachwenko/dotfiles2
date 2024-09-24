@@ -29,22 +29,33 @@ brew install fzf
 ### Useful key mappings
 If you hit the leader it will show possible keys combinations!
 
+##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
+- File Browser:   <leader>tr
+- Actions when browser is open:
+    - a: Add file or directory
+    - TODO: add more examples
+
+##### Project Searching
+- Change surrounding (normal mode): S
+
 ##### [Autocomplete with nvim-cmp](https://github.com/hrsh7th/nvim-cmp):
-- Cycle options down <C-n>
-- Cycle options up   <C-p>
-- Accept             <C-y>
+- Search project:   <leader>sp
+    - Include term: <leader>g
+    - Exclude term: <leader>v
 
 ##### [Telescope](https://github.com/nvim-telescope/telescope.nvim):
 - All possible:   <leader>s
-- Search project: <leader>sp
 - Search buffers: <leader>sb
-- File Browser:   <leader>tr
 - Grep search:    <leader>sg
 - Search word:    <leader>sw
 - Resume search:  <leader>sr
 - Search Buffers: <leader><leader>
 
+##### [Vim-Surround](https://github.com/tpope/vim-surround)
+- Change surrounding (normal mode): S
+
 ##### [Auto session](https://github.com/rmagatti/auto-session)
+Automatically saves your last session. Can be disabled.
 - Search sessions: <leader>sb
   - or :SearchSessions
 - Save Session:    :SessionSave

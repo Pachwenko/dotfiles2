@@ -30,3 +30,6 @@ keymap("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Switch to previous buffer
 keymap("n", "<Leader><Space>", "<C-^><CR>", opts)
+
+-- Reload Neovim
+vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<CR>", { desc = "Source Vim Configuration" })
