@@ -16,6 +16,7 @@ lua
 Creating symbolic links:
 ```
 ln -s ~/newnewdotfiles/.config/nvim/init.lua ~/.config/nvim/init.lua
+ln -s ~/newnewdotfiles/.config/.flake8 ~/.flake8
 ln -s ~/newnewdotfiles/.config/nvim/lua ~/.config/nvim/lua
 ```
 
