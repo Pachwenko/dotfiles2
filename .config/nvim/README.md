@@ -26,7 +26,27 @@ brew install fzf
 
 ```
 
-
 ### Useful key mappings
+If you hit the leader it will show possible keys combinations!
 
-##### Telescope:
+##### [Autocomplete with nvim-cmp](https://github.com/hrsh7th/nvim-cmp):
+- Cycle options down <C-n>
+- Cycle options up   <C-p>
+- Accept             <C-y>
+
+##### [Telescope](https://github.com/nvim-telescope/telescope.nvim):
+- All possible:   <leader>s
+- Search project: <leader>sp
+- Search buffers: <leader>sb
+- File Browser:   <leader>tr
+- Grep search:    <leader>sg
+- Search word:    <leader>sw
+- Resume search:  <leader>sr
+- Search Buffers: <leader><leader>
+
+##### [Auto session](https://github.com/rmagatti/auto-session)
+- Search sessions: <leader>sb
+  - or :SearchSessions
+- Save Session:    :SessionSave
+- Load Session:    :SessionRestore
+
