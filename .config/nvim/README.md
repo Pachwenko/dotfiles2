@@ -50,3 +50,6 @@ If you hit the leader it will show possible keys combinations!
 - Save Session:    :SessionSave
 - Load Session:    :SessionRestore
 
+##### [Vim-Surround](https://github.com/tpope/vim-surround)
+- Change surrounding (normal mode): S
+
