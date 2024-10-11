@@ -26,8 +26,11 @@ return {
 	---@module "auto-session"
 	---@type AutoSession.Config
 	opts = {
-		suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-		auto_save = true,
+		suppressed_dirs = { "~/", "~/Downloads", "/" },
+		auto_session_enabled = false,
+		auto_session_use_git_branch = false,
+		auto_restore_enabled = false,
+		auto_save = false,
 		-- log_level = 'debug',
 	},
 }

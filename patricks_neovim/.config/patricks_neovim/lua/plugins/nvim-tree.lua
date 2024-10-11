@@ -34,9 +34,18 @@ return {
 						api.node.open.edit() -- Open the directory without closing nvim-tree
 					end
 				end
+
 				-- Custom mappings
 				vim.keymap.set("n", "l", open_file_or_folder, opts("Open File and Close Tree"))
 				vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
+				-- Additional mappings for file operations
+				vim.keymap.set("n", "a", api.fs.create, opts("Create a file or folder"))
+				vim.keymap.set("n", "d", api.fs.remove, opts("Delete a file or folder"))
+				vim.keymap.set("n", "r", api.fs.rename, opts("Rename a file or folder"))
+				vim.keymap.set("n", "m", api.fs.cut, opts("Move a file or folder")) -- Move (cut)
+				vim.keymap.set("n", "p", api.fs.paste, opts("Paste file or folder")) -- Paste (after moving or copying)
+				vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy file or folder")) -- Copy node
+				vim.keymap.set("n", "x", api.fs.cut, opts("Cut file or folder")) -- Cut node
 				-- Add more mappings as needed
 			end,
 		})

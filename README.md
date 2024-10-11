@@ -11,22 +11,30 @@ lua
   - See lazy plugin docs here https://lazy.folke.io/
   - only put lazy lua plugins in here!
 
-### Setting up the dotfiles:
+### Installing the dotfiles:
 
-Creating symbolic links:
-```
-ln -s ~/newnewdotfiles/.config/nvim/init.lua ~/.config/nvim/init.lua
-ln -s ~/newnewdotfiles/.config/.flake8 ~/.flake8
-ln -s ~/newnewdotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/newnewdotfiles/.config/nvim/lua ~/.config/nvim/lua
-ln -s ~/newnewdotfiles/.config/nvim/snippets ~/.config/nvim/snippets
+```bash
+# to install a single module
+stow nvim
+
+# to mass install everything
+stow *
 ```
 
 Installing mac packages:
-```
-brew install ripgrep
+```bash
+brew bundle
 brew install fzf
+```
 
+### Uninstalling the dotfiles
+
+```bash
+# to uninstall a single module
+stow -D nvim
+
+# to mass uninstall everything
+stow -D *
 ```
 
 ### Useful key mappings
@@ -53,6 +61,14 @@ If you hit the leader it will show possible keys combinations!
 - Search word:    <leader>sw
 - Resume search:  <leader>sr
 - Search Buffers: <leader><leader>
+
+##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
+- Open file explorer:   <leader>tr
+- Add a file:           a
+- Rename a file:        r
+- Cut a file:           x
+- Paste a file:         p
+- Delete a file:        d
 
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
 - Change surrounding (normal mode): S

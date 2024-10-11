@@ -1,4 +1,8 @@
 -- Key mappings
+-- Also see plugins and other .lua files for keymaps (can be anywhere!)
+-- Ideally plugin specific keympaps live with the plugin
+--
+-- This file is more for native vim keymappings
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -49,3 +53,9 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Map H to move to the first non-blank character of the line
+vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
+
+-- Map L to move to the end of the line
+vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
