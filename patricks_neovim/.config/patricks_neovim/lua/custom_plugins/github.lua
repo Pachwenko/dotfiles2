@@ -11,7 +11,7 @@ local function get_repo_url()
 	return git_config
 end
 
--- Function to open the current line in GitHub
+-- Function to open the current line or selected lines in GitHub
 function Open_in_github()
 	-- Get the repository URL
 	local repo_url = get_repo_url()
@@ -21,19 +21,42 @@ function Open_in_github()
 		return
 	end
 
-	-- Get the current file path relative to the git root
-	local file_path = vim.fn.expand("%:p") -- Full path of the current file
-	local git_root = io.popen("git rev-parse --show-toplevel"):read("*a"):gsub("\n", "")
-	local relative_file_path = file_path:gsub(git_root .. "/", "")
+	-- Get the current file path relative to the git root using git ls-files
+	local relative_file_path = io.popen("git ls-files --full-name " .. vim.fn.expand("%:p")):read("*a"):gsub("\n", "")
 
-	-- Get the current line number
-	local line_number = vim.fn.line(".")
+	if relative_file_path == "" then
+		print("Could not determine the relative file path.")
+		return
+	end
 
 	-- Get the current branch
 	local branch = io.popen("git rev-parse --abbrev-ref HEAD"):read("*a"):gsub("\n", "")
 
-	-- Construct the GitHub URL for the current file and line number
-	local github_url = string.format("%s/blob/%s/%s#L%d", repo_url, branch, relative_file_path, line_number)
+	-- Determine if we're in visual mode and selecting a range
+	local line_start, line_end
+	if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+		-- Get the visual selection's start and end lines
+		line_start = vim.fn.line("v")
+		line_end = vim.fn.line(".")
+		if line_start > line_end then
+			-- Swap lines if selected backwards
+			line_start, line_end = line_end, line_start
+		end
+	else
+		-- Normal mode, get the current line
+		line_start = vim.fn.line(".")
+		line_end = line_start
+	end
+
+	-- Construct the GitHub URL for the current file and selected lines (if any)
+	local github_url
+	if line_start == line_end then
+		-- Single line
+		github_url = string.format("%s/blob/%s/%s#L%d", repo_url, branch, relative_file_path, line_start)
+	else
+		-- Line range
+		github_url = string.format("%s/blob/%s/%s#L%d-L%d", repo_url, branch, relative_file_path, line_start, line_end)
+	end
 
 	-- Open the GitHub URL in the default browser
 	if vim.fn.has("mac") == 1 then
@@ -45,7 +68,12 @@ function Open_in_github()
 	else
 		print("Unsupported OS")
 	end
+
+	-- Copy the GitHub URL to the clipboard
+	vim.fn.setreg("+", github_url) -- Copies the URL to system clipboard
+	print("GitHub URL copied to clipboard: " .. github_url)
 end
 
--- Keybinding to open the current line in GitHub
+-- Keybinding to open the current line or selected lines in GitHub
 vim.api.nvim_set_keymap("n", "<leader>gh", ":lua Open_in_github()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>gh", ":<C-u>lua Open_in_github()<CR>", { noremap = true, silent = true })

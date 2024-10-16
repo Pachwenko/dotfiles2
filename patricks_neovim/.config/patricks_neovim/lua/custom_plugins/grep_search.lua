@@ -76,8 +76,6 @@ function ExcludeText()
 	-- Iterate over each item and get the filename from the buffer number if available
 	for _, item in ipairs(qf_list) do
 		local filename = item.filename or (item.bufnr and vim.fn.bufname(item.bufnr)) -- Get filename from bufnr
-		print("Current item text: " .. (item.text or "nil")) -- Debugging: print each item's text
-		print("Current item filename: " .. (filename or "nil")) -- Debugging: print filename from bufnr
 
 		-- If neither the item text nor the filename matches the exclude pattern, keep it in the list
 		if not (string.match(item.text or "", exclude_pattern) or string.match(filename or "", exclude_pattern)) then
@@ -87,7 +85,6 @@ function ExcludeText()
 
 	-- Set the new quickfix list
 	vim.fn.setqflist(new_qf_list)
-	print("Excluded entries matching: " .. exclude_pattern)
 end
 
 -- Function to open selected quickfix entry
