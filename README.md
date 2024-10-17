@@ -13,6 +13,12 @@ lua
 
 ### Installing the dotfiles:
 
+Clone to the repo to your home directory:
+```shell
+git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
+```
+
+
 ```bash
 # to install a single module
 stow nvim
