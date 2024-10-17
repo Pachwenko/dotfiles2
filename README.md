@@ -18,7 +18,6 @@ Clone to the repo to your home directory:
 git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
 ```
 
-
 ```bash
 # to install a single module
 stow nvim
@@ -43,8 +42,10 @@ stow -D nvim
 stow -D *
 ```
 
-### Useful key mappings
-If you hit the leader it will show possible keys combinations!
+### Useful Neovim key mappings
+First, to run neovim with my profile do `NVIM_APPNAME=patricks_neovim nvim`
+
+NOTE: If you hit any key neovim will show possible keys combinations on the bottom of the editor automagically!
 
 ##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
 - File Browser:   <leader>tr
