@@ -27,10 +27,10 @@ return {
 						action = "Telescope oldfiles",
 					},
 					{
-						icon = "鈴  ",
-						desc = "Session List",
+						icon = "S ",
+						desc = "Previous Sessions",
 						key = "s",
-						action = "lua require('telescope-persistence').list_sessions()",
+						action = "Telescope persisted",
 					},
 					{
 						icon = "  ",

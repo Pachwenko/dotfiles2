@@ -1,15 +1,21 @@
-# Nvim Setup
+# New new dotfiles
+To replace the old stuff I had laying around.
 
-Leave very minimal config in your init.lua file
+## Neovim Setup
+
+If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
 
 Project structure:
-lua
-- config has general lua files
-  - keymaps
-  - colorscheme
+patricks_neovim/.config/patricks_neovim/lua
+- config/lazy.pua has the lazy plugin manager definition
+- custom_plugins
+  - home to stuff like keymaps, settings
+  - also home to some custom lua functions
 - plugins
   - See lazy plugin docs here https://lazy.folke.io/
   - only put lazy lua plugins in here!
+- snippets
+  - not sure if these are working yet, haven't got around to really testing snippets
 
 ### Installing the dotfiles:
 
@@ -44,19 +50,19 @@ stow -D *
 
 ### Useful Neovim key mappings
 First, to run neovim with my profile do `NVIM_APPNAME=patricks_neovim nvim`
+> the author has this aliased to `pv` =)
 
-NOTE: If you hit any key neovim will show possible keys combinations on the bottom of the editor automagically!
+NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
 
 ##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
 - File Browser:   <leader>tr
 - Actions when browser is open:
     - a: Add file or directory
-    - TODO: add more examples
+    - x: cut a file (to move it
+    - p: paste a file (to move it)
 
-##### Project Searching
-- Change surrounding (normal mode): S
-
-##### [Autocomplete with nvim-cmp](https://github.com/hrsh7th/nvim-cmp):
+#### Grep search utility
+This is a custom lua plugin in the custom_plugins folder
 - Search project:   <leader>sp
     - Include term: <leader>g
     - Exclude term: <leader>v
@@ -80,12 +86,12 @@ NOTE: If you hit any key neovim will show possible keys combinations on the bott
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
 - Change surrounding (normal mode): S
 
-##### [Auto session](https://github.com/rmagatti/auto-session)
-Automatically saves your last session. Can be disabled.
-- Search sessions: <leader>sb
-  - or :SearchSessions
+##### [Persisted Sessions](https://github.com/olimorris/persisted.nvim)
+Automatically saves your last session. Can be disabled in the plugins/persisted.lua file
+- Search sessions: <leader>ss
+  - or :Telescope persisted
 - Save Session:    :SessionSave
-- Load Session:    :SessionRestore
+- Load Session:    :SessionLoad
 
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
 - Change surrounding (normal mode): S
