@@ -60,6 +60,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			-- },
 			-- pickers = {}
 			extensions = {
+				persisted = {
+					layout_config = { width = 0.55, height = 0.55 },
+				},
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
@@ -82,7 +85,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-		vim.keymap.set("n", "<leader>ss", ":SessionSearch<CR>", { desc = "[S]earch [S]essions" })
+		-- vim.keymap.set("n", "<leader>ss", ":SessionSearch<CR>", { desc = "[S]earch [S]essions" })
 		vim.keymap.set("n", "<leader>so", ":ObsidianSearch<CR>", { desc = "[S]earch [O]bsidian" })
 		vim.keymap.set("n", "<leader>st", ":Telescope treesitter<CR>", { desc = "[S]earch [T]reesitter Symbols" })
 		vim.keymap.set(

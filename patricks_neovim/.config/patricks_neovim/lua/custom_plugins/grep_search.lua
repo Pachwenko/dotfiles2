@@ -39,7 +39,7 @@
 -- Function to perform initial grep search
 function GrepSearch()
 	local search_term = vim.fn.input("Grep for: ")
-	vim.cmd('cgetexpr system("rg --vimgrep ' .. search_term .. '")')
+	vim.cmd('cgetexpr system("rg --vimgrep \\"' .. search_term .. '\\"")')
 	vim.cmd("copen")
 end
 

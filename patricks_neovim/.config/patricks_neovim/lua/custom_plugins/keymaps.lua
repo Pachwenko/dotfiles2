@@ -59,3 +59,9 @@ vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
 
 -- Map L to move to the end of the line
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
+
+-- Resize splits using arrow keys
+vim.api.nvim_set_keymap("n", "<Up>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Down>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })

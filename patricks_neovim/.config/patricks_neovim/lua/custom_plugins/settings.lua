@@ -88,3 +88,6 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- specifies what to save when saving your session
+vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
