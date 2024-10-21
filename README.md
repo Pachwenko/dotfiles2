@@ -6,16 +6,19 @@ To replace the old stuff I had laying around.
 If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
 
 Project structure:
-patricks_neovim/.config/patricks_neovim/lua
-- config/lazy.pua has the lazy plugin manager definition
-- custom_plugins
-  - home to stuff like keymaps, settings
-  - also home to some custom lua functions
+
+`patricks_neovim/.config/patricks_neovim/lua`
+- plugin_loader/lazy.lua has the lazy plugin manager definition
+- core
+  - vanilla stuff like vim options and keymappings
+- custom_stuff
+  - home to some custom lua functions
+  - could be anything in here really
 - plugins
-  - See lazy plugin docs here https://lazy.folke.io/
-  - only put lazy lua plugins in here!
+  - only put lazy lua plugins in here! See lazy plugin docs here https://lazy.folke.io/
+  - has an archived folder for plugins - just for hoarding purposses
 - snippets
-  - not sure if these are working yet, haven't got around to really testing snippets
+  - not sure if these are working, haven't got around to testing snippets yet
 
 ### Installing the dotfiles:
 
