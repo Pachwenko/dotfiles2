@@ -1,3 +1,4 @@
 -- Grab other lua files!
-require("config.lazy")
-require("custom_plugins.init")
+require("plugin_loader.lazy")
+require("core.init")
+require("custom_stuff.init")

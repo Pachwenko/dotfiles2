@@ -73,6 +73,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         vim.keymap.set("n", "<leader>sw", ":Telescope lsp_workspace_symbols<Esc>", { desc = "[L]SP [W]orkspace Symbols" })
         vim.keymap.set("n", "<leader>fc", ":Telescope commands<Esc>", { desc = "[F]ind [C]ommands" })
         vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<Esc>", { desc = "[F]ind [K]eymaps" })
+        vim.keymap.set("n", "<leader>ch", "<cmd>Telescope command_history<cr>", { desc = "Show [C]ommand [History"})
 
         -- Keybindings using Lua functions with additional configurations
         vim.keymap.set("n", "<leader>/", function()

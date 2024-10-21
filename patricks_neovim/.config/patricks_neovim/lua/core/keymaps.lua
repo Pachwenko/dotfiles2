@@ -37,9 +37,6 @@ vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<CR>", { desc = "Source Vim C
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -65,3 +62,48 @@ vim.api.nvim_set_keymap("n", "<Up>", ":resize +2<CR>", { noremap = true, silent 
 vim.api.nvim_set_keymap("n", "<Down>", ":resize -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+
+-- Scroll and Center
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {desc = "Scroll up and center"})
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {desc = "Scroll down and center"})
+
+-- Search and center
+vim.keymap.set("n", "n", "nzzzv", {desc = "Search and center"})
+vim.keymap.set("n", "N", "Nzzzv", {desc = "Search and center"})
+
+-- Move to first non-blank
+vim.keymap.set("n", "<BS>", "^", {desc = "Move to first non-blank character"})
+vim.keymap.set("n", "<S-BS>", "$", {desc = "Move to the end of the line"})
+
+-- Convenience Search
+vim.keymap.set("n", "<leader>ss", ":s/\\v", {desc = "Search and replace on line"})
+vim.keymap.set("n", "<leader>SS", ":%s/\\v", {desc = "Search and replace on file"})
+vim.keymap.set("v", "<leader>sV", ":s/\\%V", {desc = "Search and replace, only in visual selection"})
+vim.keymap.set("v", "<C-S-d>", '"hy:%s/\\v<C-r>h//g<left><left>', {desc= "Change selected text, whole file"})
+vim.keymap.set("v", "<C-d>", '"hy:%s/\\v<C-r>h//c<left><left>', {desc= "Change selected text, with confirmation"})
+vim.keymap.set("n", "/", "/\\v", { desc = "Start search with very magic" })
+
+-- go to top/bottom centered
+vim.keymap.set("n", "<leader>gg", "ggzz", { desc = "Go to Top and Center" })
+vim.keymap.set("n", "<leader>Gg", "Gzz", { desc = "Go to Bottom and Center" })
+
+-- toggle options
+vim.keymap.set("n", "<leader>tn", ":set relativenumber!<CR>", { desc = "Toggle Relative Numbers" })
+vim.keymap.set("n", "<leader>ts", ":set spell!<CR>", { desc = "Toggle Spell Check" })
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle Line Wrap" })
+
+-- Moving Lines Up and Down
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+
+-- Buffer Management
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next Buffer" })
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous Buffer" })
+vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete Buffer" })
+
+-- Quick Save and Quit
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save File" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and Quit" })

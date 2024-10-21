@@ -10,8 +10,12 @@ vim.opt.guicursor = ""
 vim.opt.relativenumber = true
 vim.opt.number = true
 
--- Search settings
-vim.opt.hlsearch = false
+-- Enable smart case searching
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Highlight search results
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Other options
@@ -38,7 +42,7 @@ vim.opt.ignorecase = true
 vim.opt.conceallevel = 2
 
 -- some configs from Kickstart project
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
@@ -67,8 +71,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+-- Displays which-key popup sooner vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -91,3 +94,5 @@ vim.opt.scrolloff = 10
 
 -- specifies what to save when saving your session
 vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+
+
