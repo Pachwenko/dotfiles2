@@ -10,6 +10,7 @@ return { -- Collection of various small independent plugins/modules
 		--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 		--  - ci'  - [C]hange [I]nside [']quote
 		require("mini.ai").setup({ n_lines = 500 })
+		-- require("mini.starter").setup({})
 
 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
 		--

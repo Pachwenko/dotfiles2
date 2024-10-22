@@ -5,21 +5,6 @@ To replace the old stuff I had laying around.
 
 If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
 
-Project structure:
-
-`patricks_neovim/.config/patricks_neovim/lua`
-- plugin_loader/lazy.lua has the lazy plugin manager definition
-- core
-  - vanilla stuff like vim options and keymappings
-- custom_stuff
-  - home to some custom lua functions
-  - could be anything in here really
-- plugins
-  - only put lazy lua plugins in here! See lazy plugin docs here https://lazy.folke.io/
-  - has an archived folder for plugins - just for hoarding purposses
-- snippets
-  - not sure if these are working, haven't got around to testing snippets yet
-
 ### Installing the dotfiles:
 
 Clone to the repo to your home directory:
@@ -57,6 +42,22 @@ First, to run neovim with my profile do `NVIM_APPNAME=patricks_neovim nvim`
 
 NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
 
+##### Vim keymappings
+
+- Leader:               spacebar!
+- Swap to last buffer:  <leader><leader>
+- Vertical Split:       <leader>\\
+- Horizontal Split:     <leader>-
+- Save file             <leader>w
+- Close file            <leader>q
+
+##### [Custom Github Script](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/github.lua)
+- Copy code location to clipboard: <leader>gh
+
+##### [Custom Django Test Runner](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/django-test-runner.lua)
+- Run test method: <leader>dm
+    - may be kind of buggy, needs some work
+
 ##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
 - File Browser:   <leader>tr
 - Actions when browser is open:
@@ -64,7 +65,7 @@ NOTE: If you hit a key and wait a second, neovim will show all possible shortcut
     - x: cut a file (to move it
     - p: paste a file (to move it)
 
-#### Grep search utility
+##### Grep search utility
 This is a custom lua plugin in the custom_plugins folder
 - Search project:   <leader>sp
     - Include term: <leader>g
@@ -76,15 +77,21 @@ This is a custom lua plugin in the custom_plugins folder
 - Grep search:    <leader>sg
 - Search word:    <leader>sw
 - Resume search:  <leader>sr
-- Search Buffers: <leader><leader>
+- Search buffers: <leader>sb
+- Fuzzy search in file: <leader>/
+- Fuzzy search in file: <leader>/
+
+##### [Bafa](https://github.com/mistweaverco/bafa.nvim)
+- Buffer Menu: <leader>bb
 
 ##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
-- Open file explorer:   <leader>tr
-- Add a file:           a
-- Rename a file:        r
-- Cut a file:           x
-- Paste a file:         p
-- Delete a file:        d
+- Open file explorer:     <leader>tr
+- Open file under cursor: l
+- Add a file:             a
+- Rename a file:          r
+- Cut a file:             x
+- Paste a file:           p
+- Delete a file:          d
 
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
 - Change surrounding (normal mode): S
@@ -98,4 +105,19 @@ Automatically saves your last session. Can be disabled in the plugins/persisted.
 
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
 - Change surrounding (normal mode): S
+
+## Project structure:
+
+`patricks_neovim/.config/patricks_neovim/lua`
+- plugin_loader/lazy.lua has the lazy plugin manager definition
+- core
+  - vanilla stuff like vim options and keymappings
+- custom_stuff
+  - home to some custom lua functions
+  - could be anything in here really
+- plugins
+  - only put lazy lua plugins in here! See lazy plugin docs here https://lazy.folke.io/
+  - has an archived folder for plugins - just for hoarding purposses
+- snippets
+  - not sure if these are working, haven't got around to testing snippets yet
 

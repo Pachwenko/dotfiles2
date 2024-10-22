@@ -6,6 +6,10 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- NOTE: the leader key is mapped in the init.lua file and not here
+-- typically is space
+
+
 -- Visually move text
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)

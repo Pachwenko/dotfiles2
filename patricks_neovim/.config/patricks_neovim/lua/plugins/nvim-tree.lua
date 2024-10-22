@@ -37,6 +37,7 @@ return {
 
 				-- Custom mappings
 				vim.keymap.set("n", "l", open_file_or_folder, opts("Open File and Close Tree"))
+				vim.keymap.set("n", "<CR>", open_file_or_folder, opts("Open File and Close Tree"))
 				vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
 				-- Additional mappings for file operations
 				vim.keymap.set("n", "a", api.fs.create, opts("Create a file or folder"))
