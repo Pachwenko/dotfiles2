@@ -14,7 +14,7 @@ git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
 
 ```bash
 # to install a single module
-stow nvim
+stow patricks_neovim
 
 # to mass install everything
 stow *
@@ -22,15 +22,22 @@ stow *
 
 Installing mac packages:
 ```bash
+cd ~/patricks_dotfiles
 brew bundle
 brew install fzf
+```
+
+Installing npm packages:
+```terminal
+npm i -g vscode-langservers-extracted
+npm install -g @lifeart/ember-language-server
 ```
 
 ### Uninstalling the dotfiles
 
 ```bash
 # to uninstall a single module
-stow -D nvim
+stow -D patricks_neovim
 
 # to mass uninstall everything
 stow -D *
@@ -38,7 +45,6 @@ stow -D *
 
 ### Useful Neovim key mappings
 First, to run neovim with my profile do `NVIM_APPNAME=patricks_neovim nvim`
-> the author has this aliased to `pv` =)
 
 NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
 
@@ -50,6 +56,12 @@ NOTE: If you hit a key and wait a second, neovim will show all possible shortcut
 - Horizontal Split:     <leader>-
 - Save file             <leader>w
 - Close file            <leader>q
+
+##### Autocomplete
+
+This project uses nvim-cmp and nvim-lsp. Mason is used to install autocomplete engines like pyright.
+
+The normal autocomplete keys work like Enter and tab. You can add and remove tools using `:Mason`
 
 ##### [Custom Github Script](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/github.lua)
 - Copy code location to clipboard: <leader>gh
@@ -117,7 +129,7 @@ Automatically saves your last session. Can be disabled in the plugins/persisted.
   - could be anything in here really
 - plugins
   - only put lazy lua plugins in here! See lazy plugin docs here https://lazy.folke.io/
-  - has an archived folder for plugins - just for hoarding purposses
+  - this is where you'll find most of the keymappings
 - snippets
   - not sure if these are working, haven't got around to testing snippets yet
 

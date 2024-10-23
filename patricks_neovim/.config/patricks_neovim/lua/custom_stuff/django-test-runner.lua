@@ -72,7 +72,7 @@ function print_class_and_function_info()
   else
     local python_path = string.gsub(relative_path, "/", ".")
     python_path = string.match(python_path, "^(.*)%..*$")
-    command_to_run = "docker compose run test " ..  python_path .. ":" .. class_name .. "." .. function_name
+    command_to_run = "docker compose run test " ..  python_path .. "." .. class_name .. "." .. function_name
   end
   -- print("Command to run: " .. command_to_run)
   run_command_in_terminal(command_to_run)

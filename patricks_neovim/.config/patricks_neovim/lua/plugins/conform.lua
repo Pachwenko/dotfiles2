@@ -28,7 +28,7 @@ return { -- Autoformat
         return {
           timeout_ms = 500,
           lsp_format = lsp_format_opt,
-        }
+              }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
