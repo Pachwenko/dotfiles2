@@ -28,6 +28,7 @@ brew "nvm"
 
 # python tools
 brew "ruff"
+brew "basedpyright"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "zlib" # needed for pyenv installing
