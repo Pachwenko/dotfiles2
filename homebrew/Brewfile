@@ -1,25 +1,17 @@
 # window management
 cask "spectacle"
 
-# shell tools
-cask "iterm2"
-brew "tmux"
-brew "zsh"
-brew "zsh-syntax-highlighting"
-
-# vim tools
-brew "vim"
-brew "aspell"
-brew "ctags"
-
-# search tools
-brew "the_silver_searcher"
+# neovim tools
+brew "neovim"
 brew "ripgrep"
 brew "fzf"
+brew "fd"
 
 # Source Control Tools
 brew "gh"
 brew "tig"
+brew "stow"
+brew "gh" 
 
 # keyboard tools
 cask "karabiner-elements"
@@ -28,13 +20,37 @@ cask "karabiner-elements"
 cask "postgresql"
 
 # languages
+brew "sqlite"
+
+# node tools
 brew "node"
 brew "nvm"
+
+# python tools
+brew "ruff"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "zlib" # needed for pyenv installing
-brew "sqlite"
+brew "pip-tools"
 
 # dev tools
 cask "docker"
+
+# shell tools
+brew "bash" 
+cask "iterm2"
+brew "tmux"
+brew "zsh"
+brew "zsh-syntax-highlighting"
+
+# extra stuff for tmux
+cask "font-monaspace-nerd-font" # replace with whatever nerd font you prefer
+cask "font-noto-sans-symbols-2"
+brew "bc" 
+brew "coreutils" 
+brew "gawk" 
+brew "glab" 
+brew "gsed" 
+brew "jq" 
+brew "nowplaying-cli"
 

@@ -5,10 +5,10 @@
 -- This file is more for native vim keymappings
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+local map = require("util").map
 
 -- NOTE: the leader key is mapped in the init.lua file and not here
 -- typically is space
-
 
 -- Visually move text
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
@@ -68,23 +68,23 @@ vim.api.nvim_set_keymap("n", "<Left>", ":vertical resize -2<CR>", { noremap = tr
 vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
 -- Scroll and Center
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {desc = "Scroll up and center"})
-vim.keymap.set("n", "<C-d>", "<C-d>zz", {desc = "Scroll down and center"})
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 
 -- Search and center
-vim.keymap.set("n", "n", "nzzzv", {desc = "Search and center"})
-vim.keymap.set("n", "N", "Nzzzv", {desc = "Search and center"})
+vim.keymap.set("n", "n", "nzzzv", { desc = "Search and center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Search and center" })
 
 -- Move to first non-blank
-vim.keymap.set("n", "<BS>", "^", {desc = "Move to first non-blank character"})
-vim.keymap.set("n", "<S-BS>", "$", {desc = "Move to the end of the line"})
+vim.keymap.set("n", "<BS>", "^", { desc = "Move to first non-blank character" })
+vim.keymap.set("n", "<S-BS>", "$", { desc = "Move to the end of the line" })
 
 -- Convenience Search
-vim.keymap.set("n", "<leader>ss", ":s/\\v", {desc = "Search and replace on line"})
-vim.keymap.set("n", "<leader>SS", ":%s/\\v", {desc = "Search and replace on file"})
-vim.keymap.set("v", "<leader>sV", ":s/\\%V", {desc = "Search and replace, only in visual selection"})
-vim.keymap.set("v", "<C-S-d>", '"hy:%s/\\v<C-r>h//g<left><left>', {desc= "Change selected text, whole file"})
-vim.keymap.set("v", "<C-d>", '"hy:%s/\\v<C-r>h//c<left><left>', {desc= "Change selected text, with confirmation"})
+vim.keymap.set("n", "<leader>ss", ":s/\\v", { desc = "Search and replace on line" })
+vim.keymap.set("n", "<leader>SS", ":%s/\\v", { desc = "Search and replace on file" })
+vim.keymap.set("v", "<leader>sV", ":s/\\%V", { desc = "Search and replace, only in visual selection" })
+vim.keymap.set("v", "<C-S-d>", '"hy:%s/\\v<C-r>h//g<left><left>', { desc = "Change selected text, whole file" })
+vim.keymap.set("v", "<C-d>", '"hy:%s/\\v<C-r>h//c<left><left>', { desc = "Change selected text, with confirmation" })
 vim.keymap.set("n", "/", "/\\v", { desc = "Start search with very magic" })
 
 -- go to top/bottom centered
@@ -111,3 +111,6 @@ vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete Buffer" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and Quit" })
+
+-- Persisted keymappings
+vim.keymap.set("n", "<leader>ls", ":SessionLoad<CR>", { desc = "Load session based on CWD" })

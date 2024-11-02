@@ -24,7 +24,10 @@ Installing mac packages:
 ```bash
 cd ~/patricks_dotfiles
 brew bundle
-brew install fzf
+
+# nerd font, make sure to configure your terminal to use this
+# could be whichever fond you prefer
+brew install --cask font-hack-nerd-font
 ```
 
 Installing npm packages:
@@ -32,6 +35,15 @@ Installing npm packages:
 npm i -g vscode-langservers-extracted
 npm install -g @lifeart/ember-language-server
 ```
+
+Installing tmux theme:
+```terminal
+git clone https://github.com/zMoooooritz/tokyonight-tmux.git ~/.tmux/plugins/tokyonight-tmux
+```
+
+Install iterm themes:
+
+- [https://iterm2colorschemes.com/](https://iterm2colorschemes.com/)
 
 ### Uninstalling the dotfiles
 
@@ -53,6 +65,7 @@ NOTE: If you hit a key and wait a second, neovim will show all possible shortcut
 - Leader:               spacebar!
 - Swap to last buffer:  <leader><leader>
 - Vertical Split:       <leader>\\
+    - or :vs
 - Horizontal Split:     <leader>-
 - Save file             <leader>w
 - Close file            <leader>q
@@ -84,14 +97,15 @@ This is a custom lua plugin in the custom_plugins folder
     - Exclude term: <leader>v
 
 ##### [Telescope](https://github.com/nvim-telescope/telescope.nvim):
-- All possible:   <leader>s
-- Search buffers: <leader>sb
-- Grep search:    <leader>sg
-- Search word:    <leader>sw
-- Resume search:  <leader>sr
-- Search buffers: <leader>sb
+- All possible:         <leader>s
+- Search buffers:       <leader>sb
+- Grep search:          <leader>sg
+- Find file by name:    <leader>sf
+- Search Files:         <leader>sg
+- Resume search:        <leader>sr
+- Search buffers:       <leader>sb
 - Fuzzy search in file: <leader>/
-- Fuzzy search in file: <leader>/
+- Search sessions:      <leader>ss
 
 ##### [Bafa](https://github.com/mistweaverco/bafa.nvim)
 - Buffer Menu: <leader>bb
@@ -106,7 +120,7 @@ This is a custom lua plugin in the custom_plugins folder
 - Delete a file:          d
 
 ##### [Vim-Surround](https://github.com/tpope/vim-surround)
-- Change surrounding (normal mode): S
+- Change surrounding (visual mode): S
 
 ##### [Persisted Sessions](https://github.com/olimorris/persisted.nvim)
 Automatically saves your last session. Can be disabled in the plugins/persisted.lua file
@@ -115,8 +129,24 @@ Automatically saves your last session. Can be disabled in the plugins/persisted.
 - Save Session:    :SessionSave
 - Load Session:    :SessionLoad
 
-##### [Vim-Surround](https://github.com/tpope/vim-surround)
-- Change surrounding (normal mode): S
+#### Other Keybindings
+
+**comments**
+In visual mode you can command and un-commend using `gc` or just to do the current like `gcl`
+
+
+#### Interesting commands/plugins
+
+**tokyonight**
+This is the colorscheme, you can use whatever you want.
+
+**Showkeys**
+This plugin shows what keys you press, useful to showing people vim. Run the command :ShowkeysToggle
+
+**Conform**
+This plugin auto-formats your code. It's probably disabled, but you can customize it as you see fit.
+
+
 
 ## Project structure:
 

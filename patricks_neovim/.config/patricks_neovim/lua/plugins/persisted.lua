@@ -17,7 +17,7 @@ return {
 
 			follow_cwd = true, -- Change the session file to match any change in the cwd?
 			use_git_branch = false, -- Include the git branch in the session file name?
-			autoload = true, -- Automatically load the session for the cwd on Neovim startup?
+			autoload = false, -- Automatically load the session for the cwd on Neovim startup?
 
 			-- Function to run when `autoload = true` but there is no session to load
 			---@type fun(): any
@@ -58,6 +58,9 @@ return {
 				callback = function()
 					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 						if vim.bo[buf].filetype == "pyc" then
+							vim.api.nvim_buf_delete(buf, { force = true })
+						end
+						if vim.bo[buf].filetype == "neo-tree" then
 							vim.api.nvim_buf_delete(buf, { force = true })
 						end
 					end

@@ -3,8 +3,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-		"williamboman/mason-lspconfig.nvim",
+		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
@@ -91,6 +91,8 @@ return {
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header.
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+        map("<leader>fm", vim.lsp.buf.format, "[F]or[m]at file with current LSP")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -257,9 +259,9 @@ return {
 			"docker-compose-language-service",
 			"dockerfile-language-server",
 			-- python tools
-			"ruff",
-			"isort",
-			"black",
+			"ruff",  -- ruff replaces a few tools like isort, install with "brew install ruff"
+			-- "isort",
+			-- "black",
 			"pyright",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

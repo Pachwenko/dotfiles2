@@ -1,41 +1,42 @@
 -- https://github.com/echasnovski/mini.nvim
--- Lots of other ones you can add, see repo
-return { -- Collection of various small independent plugins/modules
+-- Collection of various small independent plugins/modules
+
+return {
 	"echasnovski/mini.nvim",
 	config = function()
-		-- Better Around/Inside textobjects
-		--
-		-- Examples:
-		--  - va)  - [V]isually select [A]round [)]paren
-		--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-		--  - ci'  - [C]hange [I]nside [']quote
-		require("mini.ai").setup({ n_lines = 500 })
-		require("mini.starter").setup({})
-
-		-- Add/delete/replace surroundings (brackets, quotes, etc.)
-		--
-		-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-		-- - sd'   - [S]urround [D]elete [']quotes
-		-- - sr)'  - [S]urround [R]eplace [)] [']
-		-- TODO: this conflicts with telescope search keys, figure out another surround? S
-		-- require("mini.surround").setup()
-
-		-- Simple and easy statusline.
-		--  You could remove this setup call if you don't like it,
-		--  and try some other statusline plugin
-		local statusline = require("mini.statusline")
-		-- set use_icons to true if you have a Nerd Font
-		statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-		-- You can configure sections in the statusline by overriding their
-		-- default behavior. For example, here we set the section for
-		-- cursor location to LINE:COLUMN
-		---@diagnostic disable-next-line: duplicate-set-field
-		statusline.section_location = function()
-			return "%2l:%-2v"
+		-- Utility function for key mappings
+		local map = function(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { desc = desc })
 		end
 
-		-- ... and there is more!
-		--  Check out: https://github.com/echasnovski/mini.nvim
+		-- Setup mini.ai
+		require("mini.ai").setup({
+			n_lines = 500,
+		})
+
+		-- Setup mini.git
+		local mini_git = require("mini.git")
+		mini_git.setup() -- Pass any specific options if needed
+
+		-- Key mappings for mini.git
+		map({ "n", "x" }, "<leader>ga", mini_git.show_at_cursor, "Git show at cursor")
+		map({ "n", "v" }, "<leader>gh", mini_git.show_range_history, "Git show range history")
+		map({ "n", "v" }, "<leader>gd", mini_git.show_diff_source, "Git show diff source")
+
+		-- Setup mini.diff
+		local mini_diff = require("mini.diff")
+		mini_diff.setup() -- Pass any specific options if needed
+
+		-- Key mapping for mini.diff
+		map("n", "<leader>go", mini_diff.toggle_overlay, "Git toggle overlay")
+
+		-- Setup mini.statusline
+		local statusline = require("mini.statusline")
+		statusline.setup({
+			use_icons = vim.g.have_nerd_font,
+		})
+
+		-- Additional setups (e.g., mini.surround) can be added here
+		-- Ensure that they do not conflict with other plugins
 	end,
 }
