@@ -5,7 +5,6 @@
 -- This file is more for native vim keymappings
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-local map = require("util").map
 
 -- NOTE: the leader key is mapped in the init.lua file and not here
 -- typically is space

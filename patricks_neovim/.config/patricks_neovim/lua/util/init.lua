@@ -1,6 +1,7 @@
 local M = {}
 
-function M.map(mode, lhs, rhs, opts)
+function M.map(lhs, rhs, opts, mode)
+	mode = mode or "n"
 	local final_opts = { noremap = true, silent = true }
 	if type(opts) == "string" then
 		final_opts.desc = opts
