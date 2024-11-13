@@ -92,7 +92,7 @@ return {
 				--  For example, in C this would take you to the header.
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-				map("<leader>fm", vim.lsp.buf.format, "[F]or[m]at file with current LSP")
+				-- map("<leader>fm", vim.lsp.buf.format, "[F]or[m]at file with current LSP")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -134,6 +134,7 @@ return {
 				end
 			end,
 		})
+		autoformat = false
 
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -198,29 +199,6 @@ return {
 					},
 				},
 			},
-			--
-			--
-			ruff = {
-				settings = {
-					pyright = {
-						-- Using Ruff's import organizer instead of pyright
-						disableOrganizeImports = true,
-					},
-					basedpyright = {
-						-- Using Ruff's import organizer instead of pyright
-						disableOrganizeImports = true,
-					},
-					-- organizeImports:
-					--  this can be enabled to make `organize imports`
-					--  available as code action
-					organizeImports = true,
-				},
-				-- disable ruff as hover provider to avoid conflicts with pyright
-				on_attach = function(client)
-					client.server_capabilities.hoverProvider = false
-				end,
-			},
-
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -257,9 +235,9 @@ return {
 			"docker-compose-language-service",
 			"dockerfile-language-server",
 			-- python tools
-			"ruff", -- ruff replaces a few tools like isort, install with "brew install ruff"
-			-- "isort",
-			-- "black",
+			"black",
+			"isort",
+			"yapf",
 			"basedpyright",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

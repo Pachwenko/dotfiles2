@@ -11,7 +11,8 @@ brew "fd"
 brew "gh"
 brew "tig"
 brew "stow"
-brew "gh" 
+brew "gh"
+brew "pre-commit"
 
 # keyboard tools
 cask "karabiner-elements"
@@ -28,6 +29,8 @@ brew "nvm"
 
 # python tools
 brew "ruff"
+brew "yapf"
+brew "flake8"
 brew "basedpyright"
 brew "pyenv"
 brew "pyenv-virtualenv"
@@ -38,7 +41,7 @@ brew "pip-tools"
 cask "docker"
 
 # shell tools
-brew "bash" 
+brew "bash"
 cask "iterm2"
 brew "tmux"
 brew "zsh"
@@ -47,11 +50,13 @@ brew "zsh-syntax-highlighting"
 # extra stuff for tmux
 cask "font-monaspace-nerd-font" # replace with whatever nerd font you prefer
 cask "font-noto-sans-symbols-2"
-brew "bc" 
-brew "coreutils" 
-brew "gawk" 
-brew "glab" 
-brew "gsed" 
-brew "jq" 
+brew "bc"
+brew "coreutils"
+brew "gawk"
+brew "glab"
+brew "gsed"
+brew "jq"
 brew "nowplaying-cli"
 
+# other stuff
+brew "detect-secrets"
