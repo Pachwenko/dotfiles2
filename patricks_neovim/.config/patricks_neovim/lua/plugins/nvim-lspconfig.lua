@@ -162,25 +162,47 @@ return {
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 			--
 			ts_ls = {},
-			basedpyright = {
-				-- https://docs.basedpyright.com/latest/
-				-- better than pyright for reasons - see website
-				--
-				-- See https://docs.basedpyright.com/latest/configuration/language-server-settings/
-				-- for more config options
+			pylsp = {
 				capabilities = capabilities,
+				-- on_attach = on_attach,
+				filetypes = { "python" },
+				configurationSources = { "pycodestyle", "flake8", "jedi_completion" },
 				settings = {
-					basedpyright = {
-						disableOrganizeImports = true,
-						analysis = {
-							typeCheckingMode = "off", -- options are ["off", "basic", "standard", "strict", "recommended", "all"]
-							diagnosticMode = "openFilesOnly", -- deafult is "workspace" but "openFilesOnly" can be used to limit diagnostics
-							autoSearchPaths = false,
-							autoImportCompletions = true,
-							useLibraryCodeForTypes = true,
-						},
-						python = {
-							venvPath = "~/.pyenv/versions/",
+					pylsp = {
+						plugins = {
+							black = {
+								enabled = true,
+								line_length = 120,
+							},
+							autopep8 = { enabled = false },
+							jedi_hover = { enabled = true },
+							jedi_references = { enabled = true },
+							jedi_signature_help = { enabled = true },
+							jedi_symbols = { enabled = true },
+							mccabe = { enabled = false },
+							preload = { enabled = true },
+							pydocstyle = { enabled = false },
+							pylint = { enabled = false },
+							rope_autoimport = { enabled = false },
+							rope_completion = { enabled = false },
+							yapf = { enabled = false },
+							pyflakes = { enabled = false },
+							jedi_completion = {
+								enabled = true,
+								include_params = true,
+								eager = true,
+							},
+							pycodestyle = {
+								maxLineLength = 120,
+								ignore = { "E251", "E202" },
+								enabled = true,
+							},
+							flake8 = {
+								maxLineLength = 120,
+								enabled = true,
+								ignore = { "E251", "E202" },
+								hangClosing = false,
+							},
 						},
 					},
 				},
@@ -237,8 +259,9 @@ return {
 			-- python tools
 			"black",
 			"isort",
-			"yapf",
-			"basedpyright",
+			-- "yapf",
+			-- "basedpyright",
+			"pylsp",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

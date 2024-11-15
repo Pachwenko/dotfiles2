@@ -1,5 +1,5 @@
 -- https://github.com/stevearc/conform.nvim
-return { -- Autoformat
+return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
