@@ -33,6 +33,10 @@ This repo is organized using [GNU Stow](https://www.gnu.org/software/stow/) for 
 #### 📦 **Package Management** (`homebrew/`)
 - **Brewfile**: `homebrew/Brewfile` - All Homebrew packages and casks
 
+#### 🔧 **Git Configuration** (`git/`)
+- **Git config**: `git/.gitconfig` - Git configuration (user, colors, aliases, etc.)
+- **Global gitignore**: `git/.gitignore_global` - Global gitignore patterns
+
 
 ### Installing the dotfiles:
 
