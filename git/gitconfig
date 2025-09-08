@@ -1,0 +1,59 @@
+[color]
+    ui = true
+    branch = true
+    diff = true
+    interactive = true
+    status = true
+[color "status"]
+    added = green
+    changed = red
+    deleted = red
+    untracked = yellow
+[user]
+    name = Pachwenko
+    email = patrick.mccartney@imtapps.com
+[commit]
+    gpgsign = false
+    template = /Users/patrick.mccartney/.gitmessage
+[url "git@github.com:"]
+    ; this is because we always want the secure ssh version, not https
+    insteadOf = https://github.com/
+[alias]
+    co = checkout
+    cb = checkout -b
+    ga = git commit --ammend
+    gp = git push origin
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    publish = "!git push origin $(git branch-name)"
+    pull-rebase = "!git pull origin $(git branch-name) --rebase"
+    reseth = "!git reset origin/$(git branch-name) --hard"
+    push = "~git push origin $(git branch-name)"
+    pul = "!git pull origin $(git branch-name)"
+[init]
+    defaultBranch = main
+	templatedir = ~/.git-templates
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+[git-pair]
+    scope = global
+[git-mob-config]
+    github-fetch = false
+[push]
+	default = current
+[transfer]
+    fsckobjects = true ; checks for data corruption
+[fetch]
+    fsckobjects = true
+[receive]
+    fsckObjects = true
+[branch]
+    sort = -committerdate
+[diff]
+    algorithm = histogram
+[merge]
+    conflictstyle = zdiff3
+[pull]
+	rebase = true
