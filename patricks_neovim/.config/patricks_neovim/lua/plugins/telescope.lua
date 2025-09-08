@@ -64,6 +64,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>so", ":Telescope oldfiles<Esc>", { desc = "[S]search for  [O]ld files" })
 		vim.keymap.set("n", "<leader>sw", ":Telescope grep_string<Esc>", { desc = "[S]earch current [W]ord" })
 		vim.keymap.set("n", "<leader>sg", ":Telescope live_grep<Esc>", { desc = "[S]earch by [G]rep" })
+		vim.keymap.set(
+			"n",
+			"<leader>si",
+			[[<cmd>lua require('telescope.builtin').live_grep({ search_dirs = { '~/test-projects' } })<CR>]]
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>su",
+			[[<cmd>lua require('telescope.builtin').live_grep({ search_dirs = { '~/Projects' }, additional_args = function() return { "--glob", "*.js", "--glob", "*.py", "--glob", "*.md" } end })<CR>]]
+		)
 		-- vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sr", ":Telescope resume<Esc>", { desc = "[S]earch [R]esume" })
 		vim.keymap.set(

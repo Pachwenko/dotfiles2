@@ -95,4 +95,22 @@ vim.opt.scrolloff = 10
 -- specifies what to save when saving your session
 vim.o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
 
-
+vim.filetype.add({
+  -- Detect and assign filetype based on the extension of the filename
+  extension = {
+    -- mdx = "mdx",
+  },
+  -- Detect and apply filetypes based on the entire filename
+  filename = {
+    ["ci.txt"] = "requirements",
+    ["dev.txt"] = "requirements",
+    ["dist.txt"] = "requirements",
+    ["base.txt"] = "requirements",
+    ["requirements.txt"] = "requirements",
+  },
+  -- Detect and apply filetypes based on certain patterns of the filenames
+  pattern = {
+    -- Match filenames like - ".env.example", ".env.local" and so on
+    -- ["%.env%.[%w_.-]+"] = "dotenv",
+  },
+})

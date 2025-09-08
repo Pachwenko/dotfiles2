@@ -75,17 +75,23 @@ function print_class_and_function_info()
 	local command_to_run = ""
 	if string.match(relative_path, "lambda") then
 		-- Its a LAMBDA project!!
-		command_to_run = "docker compose run test -k " .. function_name
-	elseif string.find(full_path, "tf-aws") then
-		-- newer django project, doesn't use ":" between file and class definition
+		command_to_run = "docker compose run --rm test -k " .. function_name
+	elseif string.find(full_path, "tf%-aws") then
+		-- newer django project
+		-- TODO: if project doesn't use nose we can't put : it must be .
 		local python_path = string.gsub(relative_path, "/", ".")
 		python_path = string.match(python_path, "^(.*)%..*$")
-		command_to_run = "docker compose run test " .. python_path .. "." .. class_name .. "." .. function_name
+		command_to_run = "docker compose run --rm test "
+			.. python_path:gsub("^django%.", "")
+			.. ":"
+			.. class_name
+			.. "."
+			.. function_name
 	else
 		-- legacy django project
 		local python_path = string.gsub(relative_path, "/", ".")
 		python_path = string.match(python_path, "^(.*)%..*$")
-		command_to_run = "docker compose run test " .. python_path .. ":" .. class_name .. "." .. function_name
+		command_to_run = "docker compose run --rm test " .. python_path .. ":" .. class_name .. "." .. function_name
 	end
 	-- print("Command to run: " .. command_to_run)
 	run_command_in_terminal(command_to_run)

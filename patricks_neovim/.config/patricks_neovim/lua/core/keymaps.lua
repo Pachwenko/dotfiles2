@@ -102,8 +102,6 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 
 -- Buffer Management
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next Buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous Buffer" })
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete Buffer" })
 
 -- Quick Save and Quit
