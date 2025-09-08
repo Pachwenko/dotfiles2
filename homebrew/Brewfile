@@ -1,5 +1,5 @@
 # window management
-cask "spectacle"
+cask "rectangle"
 
 # neovim tools
 brew "neovim"
@@ -16,9 +16,6 @@ brew "pre-commit"
 
 # keyboard tools
 cask "karabiner-elements"
-
-# databases
-cask "postgresql"
 
 # languages
 brew "sqlite"

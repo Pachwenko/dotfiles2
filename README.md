@@ -1,9 +1,38 @@
 # New new dotfiles
 To replace the old stuff I had laying around.
 
-## Neovim Setup
 
-If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
+### Dotfiles repo structure
+
+This repo is organized using [GNU Stow](https://www.gnu.org/software/stow/) for easy management. Here's what you can grab:
+
+#### 🖥️ **Shell Configuration** (`zsh/`)
+- **Main config**: `zsh/.zshrc` - Main shell configuration file
+- **Aliases**: `zsh/shell_files/40-aliases.sh` - Git, Docker, Editor aliases (`gs`, `gd`, `pv`, `code`, `cursor`, etc.)
+- **Keybinds**: `zsh/shell_files/30-keybinds.sh` - Custom keybindings for terminal
+- **History**: `zsh/shell_files/10-history.sh` - Shell history configuration
+- **Completions**: `zsh/shell_files/20-completions.sh` - Auto-completion setup
+- **Path setup**: `zsh/shell_files/00-path.sh` - PATH environment variables
+- **Brew environment**: `zsh/shell_files/05-brewenv.sh` - Homebrew setup
+- **Python**: `zsh/shell_files/50-python.sh` - Python environment setup
+- **Node.js**: `zsh/shell_files/60-node.sh` - Node.js/npm configuration
+- **Docker**: `zsh/shell_files/70-docker.sh` - Docker aliases and setup
+- **Terraform**: `zsh/shell_files/terraform.sh` - Terraform configuration
+
+#### 🎨 **Neovim Configuration** (`patricks_neovim/`)
+- **Main config**: `patricks_neovim/.config/patricks_neovim/init.lua` - Entry point
+- **Plugin manager**: `patricks_neovim/.config/patricks_neovim/lua/plugin_loader/lazy.lua` - Lazy.nvim setup
+- **Core settings**: `patricks_neovim/.config/patricks_neovim/lua/core/` - Basic vim options, keymaps, colorscheme
+- **Plugins**: `patricks_neovim/.config/patricks_neovim/lua/plugins/` - All plugin configurations
+- **Custom functions**: `patricks_neovim/.config/patricks_neovim/lua/custom_stuff/` - Custom Lua functions
+- **Snippets**: `patricks_neovim/.config/patricks_neovim/snippets/` - Code snippets
+
+#### 🖥️ **Terminal Multiplexer** (`tmux/`)
+- **Config**: `tmux/.tmux.conf` - Tmux configuration with Tokyo Night theme
+
+#### 📦 **Package Management** (`homebrew/`)
+- **Brewfile**: `homebrew/Brewfile` - All Homebrew packages and casks
+
 
 ### Installing the dotfiles:
 
@@ -17,12 +46,12 @@ git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
 stow patricks_neovim
 
 # to mass install everything
-stow *
+stow homebrew patricks_neovim tmux zsh
 ```
 
 Installing mac packages:
 ```bash
-cd ~/patricks_dotfiles
+cd ~/patricks_dotfiles/Homebrew
 brew bundle
 
 # nerd font, make sure to configure your terminal to use this
@@ -30,7 +59,7 @@ brew bundle
 brew install --cask font-hack-nerd-font
 ```
 
-Installing npm packages:
+Installing npm packages (for neovim autocompletions):
 ```terminal
 npm i -g vscode-langservers-extracted
 npm install -g @lifeart/ember-language-server
@@ -52,11 +81,26 @@ Install iterm themes:
 stow -D patricks_neovim
 
 # to mass uninstall everything
-stow -D *
+stow -D homebrew patricks_neovim tmux zsh
 ```
 
+## Neovim Setup
+
+If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
+
 ### Useful Neovim key mappings
-First, to run neovim with my profile do `NVIM_APPNAME=patricks_neovim nvim`
+
+Firstly, you can launch MY neovim by using `pv` command. This allows you to add your own neovim stuff if you wish. Running `nvim` directly will use the default configuration, not this custom one. You probably don't want to do that.
+
+**Option 1: Use the alias (recommended)**
+```bash
+pv  # This will launch nvim with the custom config
+```
+
+**Option 2: Use the environment variable**
+```bash
+NVIM_APPNAME=patricks_neovim nvim
+```
 
 NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
 
@@ -144,22 +188,4 @@ This is the colorscheme, you can use whatever you want.
 This plugin shows what keys you press, useful to showing people vim. Run the command :ShowkeysToggle
 
 **Conform**
-This plugin auto-formats your code. It's probably disabled, but you can customize it as you see fit.
-
-
-
-## Project structure:
-
-`patricks_neovim/.config/patricks_neovim/lua`
-- plugin_loader/lazy.lua has the lazy plugin manager definition
-- core
-  - vanilla stuff like vim options and keymappings
-- custom_stuff
-  - home to some custom lua functions
-  - could be anything in here really
-- plugins
-  - only put lazy lua plugins in here! See lazy plugin docs here https://lazy.folke.io/
-  - this is where you'll find most of the keymappings
-- snippets
-  - not sure if these are working, haven't got around to testing snippets yet
-
+This plugin auto-formats your code, either automatically or with a command.
