@@ -5,6 +5,8 @@ alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
 alias gp='git push'
+alias lg='lazygit'
+alias ts='lazygit'  # I prefer lazygit over "tig status"
 alias v='vim'   # or nvim if you prefer
 alias pv='NVIM_APPNAME=patricks_neovim nvim'  # custom neovim config
 # Editor aliases - using functions to handle spaces in paths better
@@ -16,4 +18,3 @@ cursor() {
     '/Applications/Cursor.app/Contents/Resources/app/bin/cursor' "$@"
 }
 alias dc='docker compose'  # shorter
-

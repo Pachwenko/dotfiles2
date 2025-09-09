@@ -88,6 +88,12 @@ stow -D patricks_neovim
 stow -D homebrew patricks_neovim tmux zsh
 ```
 
+
+### Adding custom configs for Shell
+
+By default there is a folder where we source any shell files into ZSH automatically. It is at ~/imtapps-custom-configs
+- This is what I use for work, if you'd like to add your own folder just go in and change the zshrc file.
+
 ## Neovim Setup
 
 If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
@@ -107,6 +113,11 @@ NVIM_APPNAME=patricks_neovim nvim
 ```
 
 NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
+
+
+### Adding custom configs for Neovim
+
+You will need to visit the folder in this repo at `patricks_neovim/.config/patricks_neovim/` and make your changes there. The lua/plugins folder has all the Lazy syntax plugins. Lua/Core folder is more vanilla neovim configurations. Lua/Custom_stuff directory are experimental packages, either things I've made myself or I'm not too sure what to do with yet. This is a living config but generally it's set up for Python and Javascript development.
 
 ##### Vim keymappings
 
