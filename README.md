@@ -142,13 +142,6 @@ The normal autocomplete keys work like Enter and tab. You can add and remove too
 - Run test method: <leader>dm
     - may be kind of buggy, needs some work
 
-##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
-- File Browser:   <leader>tr
-- Actions when browser is open:
-    - a: Add file or directory
-    - x: cut a file (to move it
-    - p: paste a file (to move it)
-
 ##### Grep search utility
 This is a custom lua plugin in the custom_plugins folder
 - Search project:   <leader>sp
