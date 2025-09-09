@@ -46,11 +46,11 @@ git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
 ```
 
 ```bash
+# to mass install everything
+stow homebrew tmux lazygit git zsh patricks_neovim
+
 # to install a single module
 stow patricks_neovim
-
-# to mass install everything
-stow homebrew patricks_neovim tmux zsh
 ```
 
 Installing mac packages:
@@ -81,11 +81,11 @@ Install iterm themes:
 ### Uninstalling the dotfiles
 
 ```bash
+# to mass uninstall everything
+stow -D homebrew tmux lazygit git zsh patricks_neovim
+
 # to uninstall a single module
 stow -D patricks_neovim
-
-# to mass uninstall everything
-stow -D homebrew patricks_neovim tmux zsh
 ```
 
 
