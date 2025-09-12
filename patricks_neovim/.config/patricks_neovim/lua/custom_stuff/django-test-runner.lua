@@ -83,7 +83,7 @@ function print_class_and_function_info()
 		python_path = string.match(python_path, "^(.*)%..*$")
 		command_to_run = "docker compose run --rm test "
 			.. python_path:gsub("^django%.", "")
-			.. ":"
+			.. "."
 			.. class_name
 			.. "."
 			.. function_name
