@@ -20,3 +20,5 @@ if [[ "$DOTFILES_OS" == "macos" ]]; then
 fi
 # On Linux/WSL, code and cursor are typically in PATH if installed
 alias dc='docker compose'  # shorter
+alias publish='git publish' # Shortcut for git publish alias
+

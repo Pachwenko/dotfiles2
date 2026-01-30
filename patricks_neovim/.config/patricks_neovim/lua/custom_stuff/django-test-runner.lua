@@ -22,7 +22,7 @@ end
 -- end
 
 function print_class_and_function_info()
-	local node = ts_utils.get_node_at_cursor()
+	local node = vim.treesitter.get_node()
 
 	if not node then
 		print("No node found")
@@ -46,7 +46,7 @@ function print_class_and_function_info()
 			for i = 0, node:child_count() - 1 do
 				local child = node:child(i)
 				if child:type() == "identifier" or child:type() == "name" then
-					function_name = ts_utils.get_node_text(child)[1]
+					function_name = vim.treesitter.get_node_text(child, 0)
 					break
 				end
 			end
@@ -57,7 +57,7 @@ function print_class_and_function_info()
 			for i = 0, node:child_count() - 1 do
 				local child = node:child(i)
 				if child:type() == "identifier" or child:type() == "name" then
-					class_name = ts_utils.get_node_text(child)[1]
+					class_name = vim.treesitter.get_node_text(child, 0)
 					break
 				end
 			end

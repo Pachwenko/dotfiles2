@@ -181,7 +181,6 @@ The normal autocomplete keys work like Enter and tab. You can add and remove too
 
 ##### [Custom Django Test Runner](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/django-test-runner.lua)
 - Run test method: <leader>dm
-    - may be kind of buggy, needs some work
 
 ##### Grep search utility
 This is a custom lua plugin in the custom_plugins folder
