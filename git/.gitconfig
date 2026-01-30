@@ -14,24 +14,23 @@
     email = patrick.mccartney@imtapps.com
 [commit]
     gpgsign = false
-    template = /Users/patrick.mccartney/.gitmessage
+    template = ~/.gitmessage
 [url "git@github.com:"]
     ; this is because we always want the secure ssh version, not https
     insteadOf = https://github.com/
 [alias]
     co = checkout
     cb = checkout -b
-    ga = git commit --ammend
+    ga = !git commit --amend
     gp = git push origin
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     publish = "!git push origin $(git branch-name)"
     pull-rebase = "!git pull origin $(git branch-name) --rebase"
     reseth = "!git reset origin/$(git branch-name) --hard"
-    push = "~git push origin $(git branch-name)"
+    pushup = "!git push origin $(git branch-name)"
     pul = "!git pull origin $(git branch-name)"
 [init]
     defaultBranch = main
-	templatedir = ~/.git-templates
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
@@ -44,16 +43,16 @@
 [push]
 	default = current
 [transfer]
-    fsckobjects = true ; checks for data corruption
+    fsckobjects = false ; disabled for plugin compatibility
 [fetch]
-    fsckobjects = true
+    fsckobjects = false
 [receive]
-    fsckObjects = true
+    fsckObjects = false
 [branch]
     sort = -committerdate
 [diff]
     algorithm = histogram
 [merge]
-    conflictstyle = zdiff3
+    conflictstyle = diff3
 [pull]
 	rebase = true

@@ -39,6 +39,13 @@
 -- Function to perform initial grep search
 function GrepSearch()
 	local search_term = vim.fn.input("Grep for: ")
+
+	-- Check if the search term is empty or contains only whitespace
+	if search_term == "" or search_term:match("^%s*$") then
+		print("Search term cannot be empty or contain only spaces.")
+		return
+	end
+
 	vim.cmd('cgetexpr system("rg --vimgrep \\"' .. search_term .. '\\"")')
 	vim.cmd("copen")
 end
@@ -46,6 +53,13 @@ end
 -- Function to include text and filename in the quickfix list
 function IncludeText()
 	local include_pattern = vim.fn.input("Include pattern: ")
+
+	-- Check if the pattern is empty or contains only whitespace
+	if include_pattern == "" or include_pattern:match("^%s*$") then
+		print("Pattern cannot be empty or contain only spaces.")
+		return
+	end
+
 	local new_qf_list = {}
 
 	-- Get the current quickfix list
@@ -68,6 +82,13 @@ end
 -- Function to exclude text and filename from the quickfix list
 function ExcludeText()
 	local exclude_pattern = vim.fn.input("Exclude pattern: ")
+
+	-- Check if the pattern is empty or contains only whitespace
+	if exclude_pattern == "" or exclude_pattern:match("^%s*$") then
+		print("Pattern cannot be empty or contain only spaces.")
+		return
+	end
+
 	local new_qf_list = {}
 
 	-- Get the current quickfix list

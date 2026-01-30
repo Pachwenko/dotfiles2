@@ -3,7 +3,7 @@
 # Provides case-insensitive matching, menu selection, and approximate matching for typos.
 
 autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump" 2>/dev/null
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"

@@ -1,0 +1,18 @@
+# IDE/Editor configs (local to each machine)
+.claude/
+.vscode/
+patricks_neovim/.config/Code/
+patricks_neovim/.config/configstore/
+
+# Local scripts
+linux-install.sh
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Common development artifacts
+*.swp
+*.swo
+*~
+.tmp/

@@ -9,12 +9,14 @@ alias lg='lazygit'
 alias ts='lazygit'  # I prefer lazygit over "tig status"
 alias v='vim'   # or nvim if you prefer
 alias pv='NVIM_APPNAME=patricks_neovim nvim'  # custom neovim config
-# Editor aliases - using functions to handle spaces in paths better
-code() {
-    '/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code' "$@"
-}
-
-cursor() {
-    '/Applications/Cursor.app/Contents/Resources/app/bin/cursor' "$@"
-}
+# Editor aliases - cross-platform
+if [[ "$DOTFILES_OS" == "macos" ]]; then
+    code() {
+        '/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code' "$@"
+    }
+    cursor() {
+        '/Applications/Cursor.app/Contents/Resources/app/bin/cursor' "$@"
+    }
+fi
+# On Linux/WSL, code and cursor are typically in PATH if installed
 alias dc='docker compose'  # shorter

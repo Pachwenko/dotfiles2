@@ -1,4 +1,4 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
+-- local ts_utils = require("nvim-treesitter.ts_utils") -- Disabled: old API, not compatible with modern treesitter
 
 function run_command_in_terminal(command)
 	local current_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")

@@ -5,14 +5,16 @@
 -- TODO: fix this so it works??
 -- TODO: make this a telescope plugin/shortcut
 vim.api.nvim_create_user_command("FZFGlobal", function()
-	local projects_dir = "~/Projects"
+	local projects_dir = vim.fn.expand("~/Projects")
 	local fzf_cmd = "rg --files --null --glob '!.*' --glob '!**/node_modules/**' "
 		.. projects_dir
-		.. " | xargs -0 dirname | sort -u | sed 's#^/Users/patrick.mccartney/Projects/##' | fzf --ansi --color 'fg+:#e1dcd6,hl:+2,hl+:+2' --color='gutter:-1' --layout=reverse"
+		.. " | xargs -0 dirname | sort -u | sed 's#^"
+		.. vim.fn.escape(projects_dir, "/")
+		.. "/##' | fzf --ansi --color 'fg+:#e1dcd6,hl:+2,hl+:+2' --color='gutter:-1' --layout=reverse"
 	local pick = vim.fn.systemlist(fzf_cmd)[1]
 
 	if pick and pick ~= "" then
-		vim.cmd("cd " .. vim.fn.fnameescape(projects_dir .. pick))
+		vim.cmd("cd " .. vim.fn.fnameescape(projects_dir .. "/" .. pick))
 	end
 end, {})
 

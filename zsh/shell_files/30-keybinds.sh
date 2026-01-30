@@ -25,7 +25,8 @@ bindkey '^[[B' down-line-or-beginning-search
 # - 'cw' to change word
 # - 'cc' to change line
 
-# Make sure we can use 'v' to edit command in vim
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+# Note: Removed 'v' binding to edit-command-line as it interfered with vi mode
+# If you want to edit a command in your editor, use Ctrl+X Ctrl+E instead
+# autoload -U edit-command-line
+# zle -N edit-command-line
+# bindkey -M vicmd 'v' edit-command-line
