@@ -42,6 +42,7 @@
     github-fetch = false
 [push]
 	default = current
+	autoSetupRemote = true
 [transfer]
     fsckobjects = false ; disabled for plugin compatibility
 [fetch]
