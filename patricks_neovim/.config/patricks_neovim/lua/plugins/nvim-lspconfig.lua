@@ -282,7 +282,21 @@ return {
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for ts_ls)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
+
+					-- Try to load the server configuration definition directly to bypass the deprecated framework access
+					local ok, config_def = pcall(require, "lspconfig.server_configurations." .. server_name)
+					if ok and config_def then
+						local default_config = config_def.default_config or {}
+						-- Merge defaults with user overrides
+						local final_config = vim.tbl_deep_extend("force", default_config, server)
+						vim.lsp.config[server_name] = final_config
+						vim.lsp.enable(server_name)
+					else
+						-- Fallback if specific config module not found
+						pcall(function()
+							require("lspconfig")[server_name].setup(server)
+						end)
+					end
 				end,
 			},
 		})

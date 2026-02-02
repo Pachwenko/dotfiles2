@@ -40,7 +40,7 @@ This repo is organized using [GNU Stow](https://www.gnu.org/software/stow/) for 
 
 ### Installing the dotfiles:
 
-Clone to the repo to your home directory:
+Clone the repo to your home directory:
 ```shell
 git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
 ```
@@ -53,15 +53,56 @@ stow homebrew tmux lazygit git zsh patricks_neovim
 stow patricks_neovim
 ```
 
+---
+
+### macOS Installation
+
 Installing mac packages:
 ```bash
-cd ~/patricks_dotfiles/Homebrew
+cd ~/patricks_dotfiles/homebrew
 brew bundle
 
 # nerd font, make sure to configure your terminal to use this
-# could be whichever fond you prefer
+# could be whichever font you prefer
 brew install --cask font-hack-nerd-font
 ```
+
+---
+
+### Linux/WSL Installation
+
+Run the Linux install script to get equivalent packages:
+```bash
+cd ~/patricks_dotfiles
+./linux-install.sh
+```
+
+This installs: zsh, tmux, ripgrep, fd, fzf, gh, tig, stow, xclip, and Neovim build dependencies.
+
+**Build Neovim from source** (recommended for latest stable):
+```bash
+git clone https://github.com/neovim/neovim ~/neovim
+cd ~/neovim
+git checkout stable
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+```
+
+**Install version managers:**
+```bash
+# pyenv (Python)
+curl https://pyenv.run | bash
+
+# nvm (Node.js)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+**Change shell to zsh:**
+```bash
+chsh -s $(which zsh)
+```
+
+---
 
 Installing npm packages (for neovim autocompletions):
 ```terminal
@@ -140,7 +181,6 @@ The normal autocomplete keys work like Enter and tab. You can add and remove too
 
 ##### [Custom Django Test Runner](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/django-test-runner.lua)
 - Run test method: <leader>dm
-    - may be kind of buggy, needs some work
 
 ##### Grep search utility
 This is a custom lua plugin in the custom_plugins folder
