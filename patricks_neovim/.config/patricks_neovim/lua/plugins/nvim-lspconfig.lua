@@ -284,7 +284,7 @@ return {
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
 					-- Try to load the server configuration definition directly to bypass the deprecated framework access
-					local ok, config_def = pcall(require, "lspconfig.server_configurations." .. server_name)
+					local ok, config_def = pcall(require, "lspconfig.configs." .. server_name)
 					if ok and config_def then
 						local default_config = config_def.default_config or {}
 						-- Merge defaults with user overrides
@@ -294,7 +294,12 @@ return {
 					else
 						-- Fallback if specific config module not found
 						pcall(function()
-							require("lspconfig")[server_name].setup(server)
+							local configs = require("lspconfig.configs")
+							local success, def = pcall(require, "lspconfig.configs." .. server_name)
+							if success then
+								configs[server_name] = def
+								configs[server_name].setup(server)
+							end
 						end)
 					end
 				end,
