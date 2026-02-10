@@ -1,239 +1,118 @@
-# New new dotfiles
-To replace the old stuff I had laying around.
+# Patrick's Dotfiles
 
+Managed with [GNU Stow](https://www.gnu.org/software/stow/). Set up for Django, Ember, React, Terraform, and Docker development.
 
-### Dotfiles repo structure
-
-This repo is organized using [GNU Stow](https://www.gnu.org/software/stow/) for easy management. Here's what you can grab:
-
-#### 🖥️ **Shell Configuration** (`zsh/`)
-- **Main config**: `zsh/.zshrc` - Main shell configuration file
-- **Aliases**: `zsh/shell_files/40-aliases.sh` - Git, Docker, Editor aliases (`gs`, `gd`, `pv`, `code`, `cursor`, etc.)
-- **Keybinds**: `zsh/shell_files/30-keybinds.sh` - Custom keybindings for terminal
-- **History**: `zsh/shell_files/10-history.sh` - Shell history configuration
-- **Completions**: `zsh/shell_files/20-completions.sh` - Auto-completion setup
-- **Path setup**: `zsh/shell_files/00-path.sh` - PATH environment variables
-- **Brew environment**: `zsh/shell_files/05-brewenv.sh` - Homebrew setup
-- **Python**: `zsh/shell_files/50-python.sh` - Python environment setup
-- **Node.js**: `zsh/shell_files/60-node.sh` - Node.js/npm configuration
-- **Docker**: `zsh/shell_files/70-docker.sh` - Docker aliases and setup
-- **Terraform**: `zsh/shell_files/terraform.sh` - Terraform configuration
-
-#### 🎨 **Neovim Configuration** (`patricks_neovim/`)
-- **Main config**: `patricks_neovim/.config/patricks_neovim/init.lua` - Entry point
-- **Plugin manager**: `patricks_neovim/.config/patricks_neovim/lua/plugin_loader/lazy.lua` - Lazy.nvim setup
-- **Core settings**: `patricks_neovim/.config/patricks_neovim/lua/core/` - Basic vim options, keymaps, colorscheme
-- **Plugins**: `patricks_neovim/.config/patricks_neovim/lua/plugins/` - All plugin configurations
-- **Custom functions**: `patricks_neovim/.config/patricks_neovim/lua/custom_stuff/` - Custom Lua functions
-- **Snippets**: `patricks_neovim/.config/patricks_neovim/snippets/` - Code snippets
-
-#### 🖥️ **Terminal Multiplexer** (`tmux/`)
-- **Config**: `tmux/.tmux.conf` - Tmux configuration with Tokyo Night theme
-
-#### 📦 **Package Management** (`homebrew/`)
-- **Brewfile**: `homebrew/Brewfile` - All Homebrew packages and casks
-
-#### 🔧 **Git Configuration** (`git/`)
-- **Git config**: `git/.gitconfig` - Git configuration (user, colors, aliases, etc.)
-- **Global gitignore**: `git/.gitignore_global` - Global gitignore patterns
-
-
-### Installing the dotfiles:
-
-Clone the repo to your home directory:
-```shell
-git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
-```
+## Quick Start
 
 ```bash
-# to mass install everything
-stow homebrew tmux lazygit git zsh patricks_neovim
-
-# to install a single module
-stow patricks_neovim
+git clone https://github.com/Pachwenko/dotfiles2.git ~/patricks_dotfiles
+cd ~/patricks_dotfiles
+stow homebrew tmux git zsh patricks_neovim
 ```
 
----
+## What's Inside
 
-### macOS Installation
+| Module | What it does |
+|--------|-------------|
+| `zsh/` | Shell config, aliases, keybinds, Python/Node/Docker setup |
+| `patricks_neovim/` | Full Neovim config with LSP, completions, and 30+ plugins ([details](./patricks_neovim/.config/patricks_neovim/PLUGINS.md)) |
+| `tmux/` | Tmux config with Tokyo Night theme |
+| `homebrew/` | Brewfile with all packages and casks |
+| `git/` | Git config and global gitignore |
 
-Installing mac packages:
+## Neovim
+
+Launch with `pv` (not `nvim` — that uses the default config):
+
+```bash
+pv                                    # recommended
+NVIM_APPNAME=patricks_neovim nvim     # or set the env var directly
+```
+
+Press any key and wait — [which-key](https://github.com/folke/which-key.nvim) will show all available shortcuts. Leader is `space`.
+
+### Key Bindings (essentials)
+
+| Key | Action |
+|-----|--------|
+| `space` | Leader key |
+| `<leader>sf` | Find files |
+| `<leader>sg` | Grep search |
+| `<leader>lg` | Open lazygit |
+| `<leader>ee` | Toggle file tree |
+| `gd` | Go to definition |
+| `gr` | Find references |
+| `<leader>ca` | Code actions |
+| `<leader>fm` | Format buffer |
+| `<leader>dm` | Run Django test method (Docker) |
+
+Full plugin reference: [PLUGINS.md](./patricks_neovim/.config/patricks_neovim/PLUGINS.md)
+
+### LSP Servers
+
+Managed by Mason (`:Mason` to view). Configured for:
+
+- **Python**: pylsp (with black, isort, flake8, jedi)
+- **JavaScript/TypeScript**: ts_ls, biome
+- **Ember**: ember-language-server
+- **Terraform**: terraform-ls
+- **Docker**: dockerfile-ls, docker-compose-language-service
+- **Web**: html, css, json, yaml
+- **Lua**: lua_ls (for Neovim config)
+
+### Config Structure
+
+```
+patricks_neovim/.config/patricks_neovim/
+  init.lua                  # entry point
+  lua/core/                 # options, keymaps, colorscheme
+  lua/plugins/              # all plugin configs (lazy.nvim)
+  lua/custom_stuff/         # custom scripts (Django test runner, GitHub links, grep)
+  snippets/                 # code snippets
+```
+
+### Custom Scripts
+
+- [Django test runner](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/django-test-runner.lua) — `<leader>dm` runs test method in Docker
+- [GitHub link copier](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/github.lua) — `<leader>gh` copies code location to clipboard
+- [Grep search](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/grep_search.lua) — `<leader>sp` project search with include/exclude
+
+## Installation
+
+### macOS
+
 ```bash
 cd ~/patricks_dotfiles/homebrew
 brew bundle
-
-# nerd font, make sure to configure your terminal to use this
-# could be whichever font you prefer
-brew install --cask font-hack-nerd-font
+brew install --cask font-hack-nerd-font  # configure your terminal to use this
 ```
 
----
+### Linux/WSL
 
-### Linux/WSL Installation
-
-Run the Linux install script to get equivalent packages:
 ```bash
 cd ~/patricks_dotfiles
 ./linux-install.sh
 ```
 
-This installs: zsh, tmux, ripgrep, fd, fzf, gh, tig, stow, xclip, and Neovim build dependencies.
-
-**Build Neovim from source** (recommended for latest stable):
+Build Neovim from source if needed:
 ```bash
 git clone https://github.com/neovim/neovim ~/neovim
-cd ~/neovim
-git checkout stable
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
+cd ~/neovim && git checkout stable
+make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 ```
 
-**Install version managers:**
+### Tmux Theme
+
 ```bash
-# pyenv (Python)
-curl https://pyenv.run | bash
-
-# nvm (Node.js)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-```
-
-**Change shell to zsh:**
-```bash
-chsh -s $(which zsh)
-```
-
----
-
-Installing npm packages (for neovim autocompletions):
-```terminal
-npm i -g vscode-langservers-extracted
-npm install -g @lifeart/ember-language-server
-```
-
-Installing tmux theme:
-```terminal
 git clone https://github.com/zMoooooritz/tokyonight-tmux.git ~/.tmux/plugins/tokyonight-tmux
 ```
 
-Install iterm themes:
-
-- [https://iterm2colorschemes.com/](https://iterm2colorschemes.com/)
-
-### Uninstalling the dotfiles
+## Uninstalling
 
 ```bash
-# to mass uninstall everything
-stow -D homebrew tmux lazygit git zsh patricks_neovim
-
-# to uninstall a single module
-stow -D patricks_neovim
+stow -D homebrew tmux git zsh patricks_neovim
 ```
 
+## Shell Customization
 
-### Adding custom configs for Shell
-
-By default there is a folder where we source any shell files into ZSH automatically. It is at ~/imtapps-custom-configs
-- This is what I use for work, if you'd like to add your own folder just go in and change the zshrc file.
-
-## Neovim Setup
-
-If you are new to neovim you can enter the tutorial by running `nvim +Tutor`
-
-### Useful Neovim key mappings
-
-Firstly, you can launch MY neovim by using `pv` command. This allows you to add your own neovim stuff if you wish. Running `nvim` directly will use the default configuration, not this custom one. You probably don't want to do that.
-
-**Option 1: Use the alias (recommended)**
-```bash
-pv  # This will launch nvim with the custom config
-```
-
-**Option 2: Use the environment variable**
-```bash
-NVIM_APPNAME=patricks_neovim nvim
-```
-
-NOTE: If you hit a key and wait a second, neovim will show all possible shortcuts! Uses which-key plugin.
-
-
-### Adding custom configs for Neovim
-
-You will need to visit the folder in this repo at `patricks_neovim/.config/patricks_neovim/` and make your changes there. The lua/plugins folder has all the Lazy syntax plugins. Lua/Core folder is more vanilla neovim configurations. Lua/Custom_stuff directory are experimental packages, either things I've made myself or I'm not too sure what to do with yet. This is a living config but generally it's set up for Python and Javascript development.
-
-##### Vim keymappings
-
-- Leader:               spacebar!
-- Swap to last buffer:  <leader><leader>
-- Vertical Split:       <leader>\\
-    - or :vs
-- Horizontal Split:     <leader>-
-- Save file             <leader>w
-- Close file            <leader>q
-
-##### Autocomplete
-
-This project uses nvim-cmp and nvim-lsp. Mason is used to install autocomplete engines like pyright.
-
-The normal autocomplete keys work like Enter and tab. You can add and remove tools using `:Mason`
-
-##### [Custom Github Script](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/github.lua)
-- Copy code location to clipboard: <leader>gh
-
-##### [Custom Django Test Runner](./patricks_neovim/.config/patricks_neovim/lua/custom_stuff/django-test-runner.lua)
-- Run test method: <leader>dm
-
-##### Grep search utility
-This is a custom lua plugin in the custom_plugins folder
-- Search project:   <leader>sp
-    - Include term: <leader>g
-    - Exclude term: <leader>v
-
-##### [Telescope](https://github.com/nvim-telescope/telescope.nvim):
-- All possible:         <leader>s
-- Search buffers:       <leader>sb
-- Grep search:          <leader>sg
-- Find file by name:    <leader>sf
-- Search Files:         <leader>sg
-- Resume search:        <leader>sr
-- Search buffers:       <leader>sb
-- Fuzzy search in file: <leader>/
-- Search sessions:      <leader>ss
-
-##### [Bafa](https://github.com/mistweaverco/bafa.nvim)
-- Buffer Menu: <leader>bb
-
-##### [Nvim-Tree](https://github.com/nvim-tree/nvim-tree.lua)
-- Open file explorer:     <leader>tr
-- Open file under cursor: l
-- Add a file:             a
-- Rename a file:          r
-- Cut a file:             x
-- Paste a file:           p
-- Delete a file:          d
-
-##### [Vim-Surround](https://github.com/tpope/vim-surround)
-- Change surrounding (visual mode): S
-
-##### [Persisted Sessions](https://github.com/olimorris/persisted.nvim)
-Automatically saves your last session. Can be disabled in the plugins/persisted.lua file
-- Search sessions: <leader>ss
-  - or :Telescope persisted
-- Save Session:    :SessionSave
-- Load Session:    :SessionLoad
-
-#### Other Keybindings
-
-**comments**
-In visual mode you can command and un-commend using `gc` or just to do the current like `gcl`
-
-
-#### Interesting commands/plugins
-
-**tokyonight**
-This is the colorscheme, you can use whatever you want.
-
-**Showkeys**
-This plugin shows what keys you press, useful to showing people vim. Run the command :ShowkeysToggle
-
-**Conform**
-This plugin auto-formats your code, either automatically or with a command.
+Extra shell configs are sourced from `~/imtapps-custom-configs/`. Change the path in `.zshrc` if you want a different location.

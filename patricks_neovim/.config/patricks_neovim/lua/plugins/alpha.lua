@@ -30,10 +30,10 @@ return {
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
 			dashboard.button("<leader> tr", "  > Toggle file explorer", "<cmd>Neotree reveal<CR>"),
-			dashboard.button("<leader> sf", "󰱼 > Find File", "<cmd>Telescope find_files<CR>"),
-			dashboard.button("<leader> sg", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
+			dashboard.button("<leader> sf", "󰱼 > Find File", "<cmd>lua Snacks.picker.files()<CR>"),
+			dashboard.button("<leader> sg", "  > Find Word", "<cmd>lua Snacks.picker.grep()<CR>"),
 			dashboard.button("<leader> ls", "󰁯  > Restore Last Session", "<cmd>SessionLoad<cr>"),
-			dashboard.button("Session Manage", "󰁯  > Manage Sessions", "<cmd>Telescope persisted<cr>"),
+			dashboard.button("<leader> ss", "󰁯  > Manage Sessions", "<cmd>Persisted<cr>"),
 			dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
 		}
 
