@@ -53,7 +53,7 @@
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
 | **tokyonight.nvim** | Color scheme | Set automatically |
-| **alpha-nvim** | Startup dashboard | `e` new file, `<leader>sf` find file, `<leader>sg` find word, `<leader>ls` restore session, `q` quit |
+| **alpha-nvim** | Startup dashboard with recent sessions | `e` new file, `<leader>sf` find file, `<leader>sg` find word, `<leader>ss` all sessions, `1`-`5` load recent session, `q` quit |
 | **which-key.nvim** | Shows available keymaps in popup | Appears automatically after pressing a leader key |
 | **indent-blankline.nvim** | Indentation guides | Automatic |
 | **smartcolumn.nvim** | Color column at 120 chars (Python/Lua) | Automatic |
@@ -75,7 +75,7 @@
 
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
-| **persisted.nvim** | Auto-save/restore sessions per project | `<leader>ss` browse sessions, `<leader>ls` restore last |
+| **persisted.nvim** | Auto-save/restore sessions per project | `<leader>ss` browse sessions, `1`-`5` on dashboard to load recent |
 | **snacks.nvim** (bufdelete) | Clean buffer deletion | `<leader>bd` delete buffer |
 | **snacks.nvim** (rename) | Rename current file | `<leader>rf` rename file |
 

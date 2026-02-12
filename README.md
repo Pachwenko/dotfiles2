@@ -110,7 +110,7 @@ git clone https://github.com/zMoooooritz/tokyonight-tmux.git ~/.tmux/plugins/tok
 ## Uninstalling
 
 ```bash
-stow -D homebrew tmux git zsh patricks_neovim
+stow -D homebrew tmux git zsh patricks_neovim gemini
 ```
 
 ## Shell Customization
