@@ -60,6 +60,29 @@ return {
 
 		local servers = {
 			ts_ls = {},
+			eslint = {},
+			tailwindcss = {
+				filetypes = {
+					"html",
+					"css",
+					"scss",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"handlebars",
+				},
+				settings = {
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+								{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+							},
+						},
+					},
+				},
+			},
 			pylsp = {
 				capabilities = capabilities,
 				filetypes = { "python" },
@@ -145,6 +168,8 @@ return {
 			"lua-language-server",
 			"yaml-language-server",
 			"typescript-language-server",
+			"eslint-lsp",
+			"tailwindcss-language-server",
 			"docker-compose-language-service",
 			"dockerfile-language-server",
 			"black",
