@@ -47,6 +47,7 @@ return {
 		-- Action buttons
 		local buttons = {
 			dashboard.button("e", "  New File", "<cmd>ene<CR>"),
+			dashboard.button("<leader> pp", "  Open Project", "<cmd>ProjectPicker<CR>"),
 			dashboard.button("<leader> sf", "  Find File", "<cmd>lua Snacks.picker.files()<CR>"),
 			dashboard.button("<leader> sg", "  Find Word", "<cmd>lua Snacks.picker.grep()<CR>"),
 			dashboard.button("<leader> ss", "  All Sessions", "<cmd>Persisted<cr>"),

@@ -59,6 +59,9 @@ return {
 		{ "<leader>so", "<cmd>ObsidianSearch<CR>", desc = "[S]earch [O]bsidian" },
 		{ "<leader>ss", "<cmd>Persisted<CR>", desc = "[S]earch [S]essions" },
 
+		-- Project picker (cd + load session)
+		{ "<leader>pp", function() pick_project() end, desc = "[P]roject [P]icker" },
+
 		-- Grep in specific directories
 		{ "<leader>si", function() Snacks.picker.grep({ dirs = { "~/test-projects" } }) end, desc = "[S]earch [I]n test-projects" },
 		{ "<leader>su", function() Snacks.picker.grep({ dirs = { "~/Projects" }, glob = { "*.js", "*.py", "*.md" } }) end, desc = "[S]earch [U]ser Projects" },
@@ -67,6 +70,11 @@ return {
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "[/] Fuzzily search in current buffer" },
 		{ "<leader>s/", function() Snacks.picker.grep({ buffers = true }) end, desc = "[S]earch [/] in Open Files" },
 		{ "<leader>sn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "[S]earch [N]eovim files" },
+
+		-- Terminal
+		{ "<leader>tt", function() Snacks.terminal() end, desc = "[T]oggle [T]erminal" },
+		{ "<leader>tf", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "[T]erminal [F]loating" },
+		{ "<c-\\>", function() Snacks.terminal() end, desc = "Toggle Terminal", mode = { "n", "t" } },
 
 		-- Neovim News
 		{
