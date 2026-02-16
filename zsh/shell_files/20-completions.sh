@@ -1,15 +1,10 @@
-# ZSH Completion Configuration
-# Enables fuzzy/substring tab completion that matches anywhere in words, not just the beginning.
-# Provides case-insensitive matching, menu selection, and approximate matching for typos.
-
 autoload -Uz compinit
 
-# Only regenerate zcompdump once per day (saves ~100ms on every other launch)
 local zcompdump="$XDG_CACHE_HOME/zsh/zcompdump"
 if [[ -f "$zcompdump" && $(date +'%j') == $(stat -f '%Sm' -t '%j' "$zcompdump" 2>/dev/null || echo 0) ]]; then
-  compinit -C -d "$zcompdump"
+    compinit -C -d "$zcompdump"
 else
-  compinit -d "$zcompdump"
+    compinit -d "$zcompdump"
 fi
 
 zstyle ':completion:*' use-cache on

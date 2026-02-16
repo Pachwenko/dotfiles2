@@ -62,27 +62,17 @@ fi
 
 alias dc='docker compose'
 
-alias m='python manage.py'
-alias mr='python manage.py remote_staging runserver'
-alias mt='python manage.py test test'
-alias mft='python manage.py test test --parallel=4 --failfast'
-alias srcm='python src/manage.py'
-alias srcmr='python src/manage.py remote_staging runserver'
-alias srcmt='python src/manage.py test test'
-alias srcmft='python src/manage.py test test --parallel=4 --failfast'
-
-alias et='ember t --server'
-alias es='ember serve'
-alias essl='ember server --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200'
-
 alias pft='pytest -n auto --disable-warnings --durations=10 --durations-min=1.0 -ra'
 alias pyclean="find . -name '*.pyc' -delete -or -type d -name '__pycache__' -delete"
 
-alias stopvpn='launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*'
-alias startvpn='launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*'
-
 if command -v zoxide >/dev/null 2>&1; then
-    eval "$(zoxide init zsh)"
+    _zoxide_lazy_load() {
+        unfunction _zoxide_lazy_load z zi
+        eval "$(zoxide init zsh)"
+        z "$@"
+    }
+    z() { _zoxide_lazy_load "$@"; }
+    zi() { _zoxide_lazy_load "$@"; }
 fi
 
 p() {

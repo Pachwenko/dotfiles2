@@ -1,6 +1,14 @@
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
-command -v pyenv >/dev/null && eval "$(pyenv init -)"
-command -v pipx >/dev/null && eval "$(register-python-argcomplete pipx)" 2>/dev/null
+
+if [[ -d "$HOME/.pyenv/shims" ]]; then
+    export PATH="$HOME/.pyenv/shims:$PATH"
+    export PYENV_SHELL=zsh
+    pyenv() {
+        unfunction pyenv
+        eval "$(command pyenv init -)"
+        pyenv "$@"
+    }
+fi
 
 if command -v uv >/dev/null 2>&1; then
     alias pip="uv pip"
