@@ -13,3 +13,8 @@ if [[ -d /home/linuxbrew/.linuxbrew/bin ]]; then
   export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 fi
 
+# Postgres.app (macOS)
+if [[ -d /Applications/Postgres.app/Contents/Versions/latest/bin ]]; then
+  export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+fi
+
