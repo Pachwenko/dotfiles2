@@ -57,15 +57,11 @@ return {
 			desc = "harpoon to file 4",
 		},
 		{
-			"<leaer>h5",
+			"<leader>h5",
 			function()
 				require("harpoon"):list():select(5)
 			end,
 			desc = "harpoon to file 5",
 		},
-		-- { "<leader>hk", function() require("harpoon"):list():next() end, desc = "harpoon next in harpoon list", },
-		-- { "<leader>hj", function() require("harpoon"):list():prev() end, desc = "harpoon next in harpoon list", },
-		-- { "<leader>k", function() require("harpoon"):list():next() end, desc = "harpoon next in harpoon list", },
-		-- { "<leader>j", function() require("harpoon"):list():prev() end, desc = "harpoon previous in harpoon list", },
 	},
 }

@@ -1,5 +1,3 @@
--- https://github.com/mcauley-penney/tidy.nvim
--- This plugin simply removes whitespace when you save a file
 return {
 	"mcauley-penney/tidy.nvim",
 	opts = {

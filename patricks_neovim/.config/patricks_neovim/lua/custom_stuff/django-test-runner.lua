@@ -76,7 +76,7 @@ function print_class_and_function_info()
 	if string.match(relative_path, "lambda") then
 		-- Its a LAMBDA project!!
 		command_to_run = "docker compose run --rm test -k " .. function_name
-	elseif string.find(full_path, "tf%-aws") then
+	elseif string.find(full_path, "%-django") then
 		-- newer django project
 		-- TODO: if project doesn't use nose we can't put : it must be .
 		local python_path = string.gsub(relative_path, "/", ".")

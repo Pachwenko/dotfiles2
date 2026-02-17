@@ -1,6 +1,12 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
+	cmd = "Neotree",
+	keys = {
+		{ "<leader>tr", "<cmd>Neotree toggle reveal_force_cwd<CR>", desc = "Toggle file explorer" },
+		{ "<leader>ee", "<cmd>Neotree toggle reveal_force_cwd<CR>", desc = "Toggle file explorer" },
+		{ "\\", "<cmd>Neotree reveal<CR>", desc = "Reveal in file explorer" },
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -311,13 +317,5 @@ return {
 				},
 			},
 		})
-
-		-- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-
-		keymap.set("n", "<leader>tr", "<cmd>Neotree toggle reveal_force_cwd<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-		keymap.set("n", "<leader>ee", "<cmd>Neotree toggle reveal_force_cwd<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-		keymap.set("n", "\\", "<cmd>Neotree reveal<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 	end,
 }
