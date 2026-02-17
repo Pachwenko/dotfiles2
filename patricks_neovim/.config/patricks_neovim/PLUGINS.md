@@ -4,7 +4,7 @@
 
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
-| **snacks.nvim** (lazygit) | Full lazygit TUI inside Neovim | `<leader>lg` open lazygit, `<leader>gf` file history, `<leader>gl` git log |
+| **snacks.nvim** (lazygit) | Full lazygit TUI inside Neovim | `<leader>lg` open lazygit, `<leader>gf` file history, `<leader>gl` git log, `<leader>gb` blame line |
 | **gitsigns.nvim** | Git diff signs in the gutter (`+`, `~`, `_`) | Signs appear automatically |
 | **mini.git** | Git commands and blame | `<leader>ga` show at cursor, `<leader>gh` range history, `<leader>gd` diff source |
 | **mini.diff** | Inline diff overlay | `<leader>go` toggle overlay |
@@ -15,7 +15,7 @@
 
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
-| **nvim-lspconfig** | Language server setup (TS, Python, Lua, JSON, HTML, CSS, Terraform, YAML, Docker, Biome, Ember) | `gd` definition, `gr` references, `gI` implementation, `<leader>rn` rename, `<leader>ca` code action, `<leader>D` type def, `<leader>ds` doc symbols, `<leader>ws` workspace symbols, `<leader>th` toggle inlay hints |
+| **nvim-lspconfig** | Language server setup (TS, Python, Lua, JSON, HTML, CSS, Terraform, YAML, Docker, Biome, Ember, ESLint, Tailwind) | `gd` definition, `gr` references, `gI` implementation, `gD` declaration, `<leader>rn` rename, `<leader>ca` code action, `<leader>D` type def, `<leader>ds` doc symbols, `<leader>ws` workspace symbols, `<leader>th` toggle inlay hints |
 | **mason.nvim** | Auto-install LSP servers and tools | Managed via `:Mason` |
 | **blink.cmp** | Fast completion engine (Rust-based) with LSP, buffer, path, and snippet sources | `<Tab>`/`<S-Tab>` navigate, `<CR>` confirm, `<C-y>` accept (default), `<C-e>` dismiss |
 | **LuaSnip** | Snippet engine (loaded via friendly-snippets) | Integrated with blink.cmp |
@@ -29,8 +29,8 @@
 
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
-| **snacks.nvim** (picker) | Fast fuzzy finder for everything | `<leader>sf` files, `<leader>sg` grep, `<leader>sb` buffers, `<leader>sh` help, `<leader>sk` keymaps, `<leader>sr` resume, `<leader>s.` recent files, `<leader>st` treesitter symbols, `<leader>sw` LSP workspace symbols, `<leader>so` Obsidian search, `<leader>ss` sessions, `<leader>/` fuzzy find in buffer, `<leader>s/` grep open files, `<leader>sn` neovim config, `<leader>fc` commands, `<leader>fk` keymaps, `<leader>ch` command history |
-| **neo-tree.nvim** | File tree sidebar | `<leader>tr` or `<leader>ee` toggle tree, `\` reveal current file |
+| **snacks.nvim** (picker) | Fast fuzzy finder for everything | `<leader>sf` files, `<leader>sg` grep, `<leader>sb` buffers, `<leader>sh` help, `<leader>sk` keymaps, `<leader>sr` resume, `<leader>s.` recent files, `<leader>st` treesitter symbols, `<leader>sw` LSP workspace symbols, `<leader>so` Obsidian search, `<leader>ss` sessions, `<leader>/` fuzzy find in buffer, `<leader>s/` grep open files, `<leader>sn` neovim config, `<leader>fc` commands, `<leader>fk` keymaps, `<leader>ch` command history, `<leader>pp` project picker, `<leader>si` search test-projects, `<leader>su` search user projects, `<leader>N` Neovim news |
+| **neo-tree.nvim** | File tree sidebar | `<leader>tr` or `<leader>ee` toggle tree, `\\` reveal current file |
 | **harpoon** | Quick-access file marks | `<leader>ha` add, `<leader>hd` remove, `<leader>hm` menu, `<leader>h1`-`<leader>h5` jump to marks |
 | **filenav.nvim** | File visit history (back/forward) | `<leader>bp` back, `<leader>bn` forward |
 | **vim-tmux-navigator** | Seamless tmux/neovim pane navigation | `<C-h>` left, `<C-j>` down, `<C-k>` up, `<C-l>` right |
@@ -43,25 +43,31 @@
 |--------|---------|-------------|
 | **vim-surround** | Change/delete/add surrounding chars | `cs'"` change `'` to `"`, `ds"` delete `"`, `ysiw)` surround word with `()`, `S` in visual mode |
 | **nvim-autopairs** | Auto-close brackets and quotes | Automatic |
-| **nvim-ts-autotag** | Auto-close HTML/JSX tags | Automatic |
+| **nvim-ts-autotag** | Auto-close HTML/JSX/Handlebars tags | Automatic |
 | **targets.vim** | Extra text objects (arguments, separators) | `cia` change inner argument, `da,` delete around comma-separated |
 | **tidy.nvim** | Remove trailing whitespace | `<leader>tw` tidy whitespace (also runs on save) |
-| **debugprint.nvim** | Insert debug print statements | `g?p`/`g?P` plain print below/above, `g?v`/`g?V` variable print below/above |
+| **debugprint.nvim** | Insert debug print statements | `g?p`/`g?P` plain print below/above, `g?v`/`g?V` variable print below/above, `g?o`/`g?O` textobj below/above |
+
+## Terminal
+
+| Plugin | Purpose | Key Bindings |
+|--------|---------|-------------|
+| **snacks.nvim** (terminal) | Floating and togglable terminal | `<leader>tt` toggle terminal, `<leader>tf` floating terminal, `<C-\>` toggle terminal (normal & terminal mode) |
 
 ## UI & Appearance
 
 | Plugin | Purpose | Key Bindings |
 |--------|---------|-------------|
 | **tokyonight.nvim** | Color scheme | Set automatically |
-| **alpha-nvim** | Startup dashboard with recent sessions | `e` new file, `<leader>sf` find file, `<leader>sg` find word, `<leader>ss` all sessions, `1`-`5` load recent session, `q` quit |
+| **alpha-nvim** | Startup dashboard with recent sessions | `e` new file, `<leader>sf` find file, `<leader>sg` find word, `<leader>ss` all sessions, `<leader>pp` open project, `1`-`5` load recent session, `q` quit |
 | **which-key.nvim** | Shows available keymaps in popup | Appears automatically after pressing a leader key |
 | **indent-blankline.nvim** | Indentation guides | Automatic |
 | **smartcolumn.nvim** | Color column at 120 chars (Python/Lua) | Automatic |
 | **nvim-treesitter** | Syntax highlighting and code parsing | Automatic |
 | **showkeys** | Display pressed keys in floating window | `:ShowkeysToggle` |
-| **tailwindcss-colorizer-cmp** | Color previews in completion menu | Automatic (with Tailwind) |
+| **tailwindcss-colorizer-cmp** | Color previews in completion menu for Tailwind classes | Automatic (with Tailwind LSP active in `.tsx`, `.hbs`, `.html`, etc.) |
 | **mini.statusline** | Minimal status line | Automatic |
-| **snacks.nvim** (toggles) | Various UI toggles | `<leader>us` spelling, `<leader>uw` wrap, `<leader>uL` relative numbers, `<leader>ud` diagnostics, `<leader>ul` line numbers, `<leader>uc` conceal, `<leader>uT` treesitter, `<leader>ub` background, `<leader>uh` inlay hints |
+| **snacks.nvim** (toggles) | Various UI toggles | `<leader>us` spelling, `<leader>uw` wrap, `<leader>uL` relative numbers, `<leader>ud` diagnostics, `<leader>ul` line numbers, `<leader>uc` conceal, `<leader>uT` treesitter, `<leader>ub` background, `<leader>uh` inlay hints, `<leader>un` dismiss notifications |
 
 ## Notes & Markdown
 
