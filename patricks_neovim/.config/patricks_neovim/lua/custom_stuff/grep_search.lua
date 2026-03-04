@@ -1,4 +1,4 @@
---[[ 
+--[[
   Grep Search Plugin
 
   This plugin makes it easy to search through your project and refine the search results
@@ -17,7 +17,7 @@
        - Visual Mode: Select text and press `<leader>sp` to search for selection.
        - Enter the search term when prompted.
        - The results will be displayed in the quickfix window.
-       
+
     2. Exclude specific entries:
        - Press `<leader>v` (or run `:lua FilterQuickfix("exclude")`).
        - Enter the pattern you want to exclude.
@@ -31,7 +31,7 @@
     4. Navigating the results:
        - Use vim keys (j, k) in the quickfix window.
        - Press `<CR>` (Enter) to open the result in the main window.
-       
+
   Keybindings:
     - `<leader>sp`: Start a new search (Normal/Visual).
     - `<leader>v`: Exclude results.
@@ -135,6 +135,7 @@ end
 function IncludeText()
 	FilterQuickfix("include")
 end
+
 function ExcludeText()
 	FilterQuickfix("exclude")
 end
@@ -163,31 +164,54 @@ function QuickfixOpen()
 end
 
 -- Mappings
--- 1. Normal Mode Search
-vim.keymap.set("n", "<leader>sp", function()
-	GrepSearch()
-end, { noremap = true, silent = true, desc = "Grep Search" })
+if vim.g.vscode then
+	local vscode = require("vscode")
 
--- 2. Visual Mode Search (New!)
-vim.keymap.set("v", "<leader>sp", function()
-	local saved_reg = vim.fn.getreg("v")
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg("v")
-	vim.fn.setreg("v", saved_reg) -- Restore register
+	-- 1. Normal Mode Search (opens VSCode Find In Files widget)
+	vim.keymap.set("n", "<leader>sp", function()
+		vscode.action("workbench.action.findInFiles")
+	end, { noremap = true, silent = true, desc = "VSCode Find In Files" })
 
-	-- Sanitize newlines for search
-	text = string.gsub(text, "\n", " ")
-	GrepSearch(text)
-end, { noremap = true, silent = true, desc = "Grep Visual Selection" })
+	-- 2. Visual Mode Search (populates VSCode Find In Files with selection)
+	vim.keymap.set("v", "<leader>sp", function()
+		local saved_reg = vim.fn.getreg("v")
+		vim.cmd('noau normal! "vy"')
+		local text = vim.fn.getreg("v")
+		vim.fn.setreg("v", saved_reg)
 
--- 3. Filter mappings
-vim.keymap.set("n", "<leader>v", "<cmd>lua ExcludeText()<CR>", { noremap = true, silent = true, desc = "Filter Exclude" })
-vim.keymap.set("n", "<leader>g", "<cmd>lua IncludeText()<CR>", { noremap = true, silent = true, desc = "Filter Include" })
+		-- Pass text cleanly to VSCode Find In Files
+		text = string.gsub(text, "\n", " ")
+		vscode.action("workbench.action.findInFiles", { args = { query = text } })
+	end, { noremap = true, silent = true, desc = "VSCode Find Selection" })
+else
+	-- 1. Normal Mode Search
+	vim.keymap.set("n", "<leader>sp", function()
+		GrepSearch()
+	end, { noremap = true, silent = true, desc = "Grep Search" })
 
--- 4. Quickfix Window Specific Mapping (Fixes global <CR> bug)
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "qf",
-	callback = function()
-		vim.keymap.set("n", "<CR>", "<cmd>lua QuickfixOpen()<CR>", { buffer = true, silent = true })
-	end,
-})
+	-- 2. Visual Mode Search (New!)
+	vim.keymap.set("v", "<leader>sp", function()
+		local saved_reg = vim.fn.getreg("v")
+		vim.cmd('noau normal! "vy"')
+		local text = vim.fn.getreg("v")
+		vim.fn.setreg("v", saved_reg) -- Restore register
+
+		-- Sanitize newlines for search
+		text = string.gsub(text, "\n", " ")
+		GrepSearch(text)
+	end, { noremap = true, silent = true, desc = "Grep Visual Selection" })
+
+	-- 3. Filter mappings
+	vim.keymap.set("n", "<leader>v", "<cmd>lua ExcludeText()<CR>",
+		{ noremap = true, silent = true, desc = "Filter Exclude" })
+	vim.keymap.set("n", "<leader>g", "<cmd>lua IncludeText()<CR>",
+		{ noremap = true, silent = true, desc = "Filter Include" })
+
+	-- 4. Quickfix Window Specific Mapping (Fixes global <CR> bug)
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "qf",
+		callback = function()
+			vim.keymap.set("n", "<CR>", "<cmd>lua QuickfixOpen()<CR>", { buffer = true, silent = true })
+		end,
+	})
+end
