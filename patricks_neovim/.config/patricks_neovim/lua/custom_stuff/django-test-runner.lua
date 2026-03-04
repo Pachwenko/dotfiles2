@@ -1,6 +1,13 @@
 -- local ts_utils = require("nvim-treesitter.ts_utils") -- Disabled: old API, not compatible with modern treesitter
 
 function run_command_in_terminal(command)
+	if vim.g.vscode then
+		local vscode = require("vscode")
+		vscode.action("workbench.action.terminal.focus")
+		vscode.action("workbench.action.terminal.sendSequence", { args = { text = command .. "\r" } })
+		return
+	end
+
 	local current_pane = vim.fn.system("tmux display-message -p '#{pane_id}'"):gsub("\n", "")
 	local right_pane = vim.fn
 		.system(string.format("tmux list-panes -t %s -F '#{pane_id}' | tail -n +2 | head -n 1", current_pane))
@@ -15,11 +22,6 @@ function run_command_in_terminal(command)
 	local tmux_command = string.format("tmux send-keys -t %s '%s' Enter", right_pane, command)
 	os.execute(tmux_command)
 end
-
--- function run_command_in_terminal(command)
---   local output = vim.fn.system(command)
---   print(output)
--- end
 
 function print_class_and_function_info()
 	local node = vim.treesitter.get_node()
@@ -78,7 +80,6 @@ function print_class_and_function_info()
 		command_to_run = "docker compose run --rm test -k " .. function_name
 	elseif string.find(full_path, "%-django") then
 		-- newer django project
-		-- TODO: if project doesn't use nose we can't put : it must be .
 		local python_path = string.gsub(relative_path, "/", ".")
 		python_path = string.match(python_path, "^(.*)%..*$")
 		command_to_run = "docker compose run --rm test "
@@ -91,16 +92,30 @@ function print_class_and_function_info()
 		-- legacy django project
 		local python_path = string.gsub(relative_path, "/", ".")
 		python_path = string.match(python_path, "^(.*)%..*$")
-		command_to_run = "docker compose run --rm test " .. python_path .. ":" .. class_name .. "." .. function_name
+		command_to_run = "docker compose run --rm test " .. python_path .. "." .. class_name .. "." .. function_name
 	end
-	-- print("Command to run: " .. command_to_run)
 	run_command_in_terminal(command_to_run)
 end
 
 -- Keymap to trigger the function
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>dm",
-	":lua print(print_class_and_function_info())<CR>",
-	{ noremap = true, silent = true }
-)
+if vim.g.vscode then
+	local vscode = require("vscode")
+	-- Hook directly into your VSCode-Django-Test-Runner extension
+	vim.keymap.set("n", "<leader>dm", function()
+		vscode.action("python.djangoTestRunner.runMethodTests")
+	end, { desc = "Run Django Method Test (VSCode Extension)" })
+
+	vim.keymap.set("n", "<leader>dc", function()
+		vscode.action("python.djangoTestRunner.runClassTests")
+	end, { desc = "Run Django Class Tests (VSCode Extension)" })
+
+	vim.keymap.set("n", "<leader>da", function()
+		vscode.action("python.djangoTestRunner.runAppTests")
+	end, { desc = "Run Django App Tests (VSCode Extension)" })
+
+	vim.keymap.set("n", "<leader>dp", function()
+		vscode.action("python.djangoTestRunner.runPreviousTests")
+	end, { desc = "Run Previous Django Tests (VSCode Extension)" })
+else
+	vim.keymap.set("n", "<leader>dm", print_class_and_function_info, { noremap = true, silent = true, desc = "Run Django Method Test (Terminal)" })
+end
